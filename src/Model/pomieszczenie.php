@@ -71,7 +71,7 @@ class pomieszczenie
     public static function findAll(): array
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
-        $sql = 'SELECT * FROM pomieszcznie';
+        $sql = 'SELECT * FROM pomieszczenie';
         $statement = $pdo->prepare($sql);
         $statement->execute();
 
@@ -126,6 +126,14 @@ class pomieszczenie
     public function delete(): void
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
+
+        $sql2 = "DELETE FROM pracownik_pomieszczenie WHERE pomieszczenie_id = :pomieszczenie_id";
+        $statement = $pdo->prepare($sql2);
+        $statement->execute([
+            ':pomieszczenie_id' => $this->getPomieszczenie_id(),
+        ]);
+
+
         $sql = "DELETE FROM pomieszczenie WHERE pomieszczenie_id = :pomieszczenie_id";
         $statement = $pdo->prepare($sql);
         $statement->execute([

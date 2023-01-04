@@ -8,34 +8,34 @@ $router = new \App\Service\Router();
 
 $action = $_REQUEST['action'] ?? null;
 switch ($action) {
-    case 'post-index':
+    case 'pomieszczenie-index':
     case null:
-        $controller = new \App\Controller\PostController();
+        $controller = new \App\Controller\pomieszczenieController();
         $view = $controller->indexAction($templating, $router);
         break;
-    case 'post-create':
-        $controller = new \App\Controller\PostController();
-        $view = $controller->createAction($_REQUEST['post'] ?? null, $templating, $router);
+    case 'pomieszczenie-create':
+        $controller = new \App\Controller\pomieszczenieController();
+        $view = $controller->createAction($_REQUEST['pomieszczenie'] ?? null, $templating, $router);
         break;
-    case 'post-edit':
+    case 'pomieszczenie-edit':
         if (! $_REQUEST['id']) {
             break;
         }
-        $controller = new \App\Controller\PostController();
-        $view = $controller->editAction($_REQUEST['id'], $_REQUEST['post'] ?? null, $templating, $router);
+        $controller = new \App\Controller\pomieszczenieController();
+        $view = $controller->editAction($_REQUEST['id'], $_REQUEST['pomieszczenie'] ?? null, $templating, $router);
         break;
-    case 'post-show':
+    case 'pomieszczenie-show':
         if (! $_REQUEST['id']) {
             break;
         }
-        $controller = new \App\Controller\PostController();
+        $controller = new \App\Controller\pomieszczenieController();
         $view = $controller->showAction($_REQUEST['id'], $templating, $router);
         break;
-    case 'post-delete':
+    case 'pomieszczenie-delete':
         if (! $_REQUEST['id']) {
             break;
         }
-        $controller = new \App\Controller\PostController();
+        $controller = new \App\Controller\pomieszczenieController();
         $view = $controller->deleteAction($_REQUEST['id'], $router);
         break;
     default:

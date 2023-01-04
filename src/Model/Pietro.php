@@ -11,7 +11,7 @@ class Pietro
 
     public function getpietroId(): ?int
     {
-        return $this->pieto_id;
+        return $this->pietro_id;
     }
 
     public function setpietroId(?int $id): Pietro
@@ -23,10 +23,10 @@ class Pietro
 
     public function getbudynekId(): ?string
     {
-        return $this->subject;
+        return $this->budynek_id;
     }
 
-    public function setbudynekId(?string $budynek_id): pPietro
+    public function setbudynekId(?string $budynek_id): Pietro
     {
         $this->budynek_id = $budynek_id;
 
@@ -78,7 +78,7 @@ class Pietro
         $pietra = [];
         $pietraArray = $statement->fetchAll(\PDO::FETCH_ASSOC);
         foreach ($pietraArray as $pietroArray) {
-            $pietra[] = self::fromArray($postArray);
+            $pietra[] = self::fromArray($pietroArray);
         }
 
         return $pietra;

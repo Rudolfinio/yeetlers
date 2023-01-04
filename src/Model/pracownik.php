@@ -136,7 +136,7 @@ class pracownik
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
         if (! $this->getPracownikId()) {
-            $sql = "INSERT INTO pracownik (imie, nazwisko, tytul) VALUES (:imie, :naziwsko, :tytul)";
+            $sql = "INSERT INTO pracownik (imie, nazwisko, tytul) VALUES (:imie, :nazwisko, :tytul)";
             $statement = $pdo->prepare($sql);
             $statement->execute([
                 'imie' => $this->getImie(),
@@ -160,7 +160,12 @@ class pracownik
     public function delete(): void
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
+        $sql2 = "DELETE FROM pracownik_pomieszczenie WHERE pracownik_id = :id";
         $sql = "DELETE FROM pracownik WHERE pracownik_id = :id";
+        $statement = $pdo->prepare($sql2);
+        $statement->execute([
+            ':id' => $this->getPracownikId(),
+        ]);
         $statement = $pdo->prepare($sql);
         $statement->execute([
             ':id' => $this->getPracownikId(),

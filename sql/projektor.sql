@@ -95,20 +95,20 @@ INSERT IGNORE INTO `pracownik` (`pracownik_id`, `imie`, `nazwisko`, `tytul`) VAL
 /*!40000 ALTER TABLE `pracownik` ENABLE KEYS */;
 
 -- Zrzut struktury tabela projekt.pracownik-pomieszczenie
-CREATE TABLE IF NOT EXISTS `pracownik-pomieszczenie` (
-  `pracownik-pomieszczenie_id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `pracownik_pomieszczenie` (
+  `pracownik_pomieszczenie_id` int(11) NOT NULL AUTO_INCREMENT,
   `pracownik_id` int(11) NOT NULL,
   `pomieszczenie_id` int(11) NOT NULL,
-  PRIMARY KEY (`pracownik-pomieszczenie_id`),
-  KEY `FK_pracownik-pomieszczenie_pracownik` (`pracownik_id`),
-  KEY `FK_pracownik-pomieszczenie_pomieszczenie` (`pomieszczenie_id`),
-  CONSTRAINT `FK_pracownik-pomieszczenie_pomieszczenie` FOREIGN KEY (`pomieszczenie_id`) REFERENCES `pomieszczenie` (`pomieszczenie_id`),
-  CONSTRAINT `FK_pracownik-pomieszczenie_pracownik` FOREIGN KEY (`pracownik_id`) REFERENCES `pracownik` (`pracownik_id`)
+  PRIMARY KEY (`pracownik_pomieszczenie_id`),
+  KEY `FK_pracownik_pomieszczenie_pracownik` (`pracownik_id`),
+  KEY `FK_pracownik_pomieszczenie_pomieszczenie` (`pomieszczenie_id`),
+  CONSTRAINT `FK_pracownik_pomieszczenie_pomieszczenie` FOREIGN KEY (`pomieszczenie_id`) REFERENCES `pomieszczenie` (`pomieszczenie_id`),
+  CONSTRAINT `FK_pracownik_pomieszczenie_pracownik` FOREIGN KEY (`pracownik_id`) REFERENCES `pracownik` (`pracownik_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 -- Zrzucanie danych dla tabeli projekt.pracownik-pomieszczenie: ~5 rows (około)
 /*!40000 ALTER TABLE `pracownik-pomieszczenie` DISABLE KEYS */;
-INSERT IGNORE INTO `pracownik-pomieszczenie` (`pracownik-pomieszczenie_id`, `pracownik_id`, `pomieszczenie_id`) VALUES
+INSERT IGNORE INTO `pracownik_pomieszczenie` (`pracownik_pomieszczenie_id`, `pracownik_id`, `pomieszczenie_id`) VALUES
 	(1, 1, 7),
 	(2, 2, 6),
 	(3, 4, 8),

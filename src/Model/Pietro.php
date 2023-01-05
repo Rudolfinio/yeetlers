@@ -139,6 +139,32 @@ class Pietro
     public function delete(): void
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
+
+        $sql4 = "SELECT pomieszczenie_id from pomieszczenie where pietro_id = :pietro_id";
+        $statement = $pdo->prepare($sql4);
+        $statement->execute(['pietro_id' => $this->getPietroId()]);
+
+        $myfile = fopen("output.txt", "a") or die("Unable to open file!");
+        while($data = $statement->fetch(\PDO::FETCH_ASSOC)){
+            
+            $sql2 = "DELETE FROM pracownik_pomieszczenie WHERE pomieszczenie_id = :pomieszczenie_id";
+            $statement2 = $pdo->prepare($sql2);
+            $statement2->execute([
+                ':pomieszczenie_id' => $data['pomieszczenie_id'],
+            ]);
+    
+            $sql3 = "DELETE FROM pomieszczenie WHERE pomieszczenie_id = :pomieszczenie_id";
+            $statement2 = $pdo->prepare($sql3);
+            $statement2->execute([
+                ':pomieszczenie_id' => $data['pomieszczenie_id'],
+            ]);
+
+            fwrite($myfile, $data['pomieszczenie_id'] . PHP_EOL);
+        }
+
+
+
+        
         $sql = "DELETE FROM pietro WHERE pietro_id = :pietro_id";
         $statement = $pdo->prepare($sql);
         $statement->execute([

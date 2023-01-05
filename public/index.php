@@ -36,39 +36,75 @@ switch ($action) {
 //            break;
 //        }
 //        $controller = new \App\Controller\pomieszczenieController();
-    case 'pracownik-index':
-    case null:
-        $controller = new \App\Controller\pracownikController();
-        $view = $controller->indexAction($templating, $router);
-        break;
-    case 'pracownik-create':
-        $controller = new \App\Controller\pracownikController();
-        $view = $controller->createAction($_REQUEST['pracownik'] ?? null, $templating, $router);
-        break;
-    case 'pracownik-edit':
-        if (! $_REQUEST['id']) {
+
+
+    // case 'pracownik-index':
+    // case null:
+    //     $controller = new \App\Controller\pracownikController();
+    //     $view = $controller->indexAction($templating, $router);
+    //     break;
+    // case 'pracownik-create':
+    //     $controller = new \App\Controller\pracownikController();
+    //     $view = $controller->createAction($_REQUEST['pracownik'] ?? null, $templating, $router);
+    //     break;
+    // case 'pracownik-edit':
+    //     if (! $_REQUEST['id']) {
+    //         break;
+    //     }
+    //     $controller = new \App\Controller\pracownikController();
+    //     $view = $controller->editAction($_REQUEST['id'], $_REQUEST['pracownik'] ?? null, $templating, $router);
+    //     break;
+    // case 'pracownik-show':
+    //     if (! $_REQUEST['id']) {
+    //         break;
+    //     }
+    //     $controller = new \App\Controller\pracownikController();
+    //     $view = $controller->showAction($_REQUEST['id'], $templating, $router);
+    //     break;
+    // case 'pracownik-delete':
+    //     if (! $_REQUEST['id']) {
+    //         break;
+    //     }
+    //     $controller = new \App\Controller\pracownikController();
+    //     $view = $controller->deleteAction($_REQUEST['id'], $router);
+    //     break;
+    // default:
+    //     $view = 'Not found';
+    //     break;
+
+    case 'Pietro-index':
+        case null:
+            $controller = new \App\Controller\PietroController();
+            $view = $controller->indexAction($templating, $router);
             break;
-        }
-        $controller = new \App\Controller\pracownikController();
-        $view = $controller->editAction($_REQUEST['id'], $_REQUEST['pracownik'] ?? null, $templating, $router);
-        break;
-    case 'pracownik-show':
-        if (! $_REQUEST['id']) {
+        case 'Pietro-create':
+            $controller = new \App\Controller\PietroController();
+            $view = $controller->createAction($_REQUEST['Pietro'] ?? null, $templating, $router);
             break;
-        }
-        $controller = new \App\Controller\pracownikController();
-        $view = $controller->showAction($_REQUEST['id'], $templating, $router);
-        break;
-    case 'pracownik-delete':
-        if (! $_REQUEST['id']) {
+        case 'Pietro-edit':
+            if (! $_REQUEST['id']) {
+                break;
+            }
+            $controller = new \App\Controller\PietroController();
+            $view = $controller->editAction($_REQUEST['id'], $_REQUEST['Pietro'] ?? null, $templating, $router);
             break;
-        }
-        $controller = new \App\Controller\pracownikController();
-        $view = $controller->deleteAction($_REQUEST['id'], $router);
-        break;
-    default:
-        $view = 'Not found';
-        break;
+        case 'Pietro-show':
+            if (! $_REQUEST['id']) {
+                break;
+            }
+            $controller = new \App\Controller\PietroController();
+            $view = $controller->showAction($_REQUEST['id'], $templating, $router);
+            break;
+        case 'Pietro-delete':
+            if (! $_REQUEST['id']) {
+                break;
+            }
+            $controller = new \App\Controller\PietroController();
+            $view = $controller->deleteAction($_REQUEST['id'], $router);
+            break;
+        default:
+            $view = 'Not found';
+            break;
 }
 
 if ($view) {

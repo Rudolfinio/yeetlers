@@ -94,7 +94,7 @@ INSERT IGNORE INTO `pracownik` (`pracownik_id`, `imie`, `nazwisko`, `tytul`) VAL
 	(4, 'Sławomir', 'Wernikowski', 'mgr inż.');
 /*!40000 ALTER TABLE `pracownik` ENABLE KEYS */;
 
--- Zrzut struktury tabela projekt.pracownik-pomieszczenie
+-- Zrzut struktury tabela projekt.pracownik_pomieszczenie
 CREATE TABLE IF NOT EXISTS `pracownik_pomieszczenie` (
   `pracownik_pomieszczenie_id` int(11) NOT NULL AUTO_INCREMENT,
   `pracownik_id` int(11) NOT NULL,
@@ -106,15 +106,15 @@ CREATE TABLE IF NOT EXISTS `pracownik_pomieszczenie` (
   CONSTRAINT `FK_pracownik_pomieszczenie_pracownik` FOREIGN KEY (`pracownik_id`) REFERENCES `pracownik` (`pracownik_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
--- Zrzucanie danych dla tabeli projekt.pracownik-pomieszczenie: ~5 rows (około)
-/*!40000 ALTER TABLE `pracownik-pomieszczenie` DISABLE KEYS */;
+-- Zrzucanie danych dla tabeli projekt.pracownik_pomieszczenie: ~5 rows (około)
+/*!40000 ALTER TABLE `pracownik_pomieszczenie` DISABLE KEYS */;
 INSERT IGNORE INTO `pracownik_pomieszczenie` (`pracownik_pomieszczenie_id`, `pracownik_id`, `pomieszczenie_id`) VALUES
 	(1, 1, 7),
 	(2, 2, 6),
 	(3, 4, 8),
 	(5, 3, 6),
 	(7, 1, 1);
-/*!40000 ALTER TABLE `pracownik-pomieszczenie` ENABLE KEYS */;
+/*!40000 ALTER TABLE `pracownik_pomieszczenie` ENABLE KEYS */;
 
 -- Zrzut struktury tabela projekt.uzytkownik
 CREATE TABLE IF NOT EXISTS `uzytkownik` (

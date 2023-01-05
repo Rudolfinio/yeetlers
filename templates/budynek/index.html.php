@@ -8,7 +8,6 @@ $bodyClass = 'index';
 
 ob_start(); ?>
     <h1>Posts List</h1>
-
     <a href="<?= $router->generatePath('budynek-create') ?>">Create new</a>
 
     <ul class="index-list">

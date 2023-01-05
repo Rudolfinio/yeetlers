@@ -12,5 +12,7 @@
 <nav><?php require(__DIR__ . DIRECTORY_SEPARATOR . 'nav.html.php') ?></nav>
 <main><?= $main ?? null ?></main>
 <footer>&copy;<?= date('Y') ?> Custom Framework</footer>
+
 </body>
 </html>
+

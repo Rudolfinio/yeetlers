@@ -229,6 +229,40 @@ class budynek
     public function delete(): void
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
+
+        $sql5= "SELECT pietro_id from pietro where budynek_id = :budynek_id";
+        $statement = $pdo->prepare($sql5);
+        $statement->execute(['budynek_id' => $this->getBudynekId()]);
+        while($data2 = $statement->fetch(\PDO::FETCH_ASSOC)) {
+            $sql4 = "SELECT pomieszczenie_id from pomieszczenie where pietro_id = :pietro_id";
+            $statement3 = $pdo->prepare($sql4);
+            $statement3->execute(['pietro_id' => $data2['pietro_id']]);
+
+            //$myfile = fopen("output.txt", "a") or die("Unable to open file!");
+            while ($data = $statement3->fetch(\PDO::FETCH_ASSOC)) {
+
+                $sql2 = "DELETE FROM pracownik_pomieszczenie WHERE pomieszczenie_id = :pomieszczenie_id";
+                $statement2 = $pdo->prepare($sql2);
+                $statement2->execute([
+                    ':pomieszczenie_id' => $data['pomieszczenie_id'],
+                ]);
+
+                $sql3 = "DELETE FROM pomieszczenie WHERE pomieszczenie_id = :pomieszczenie_id";
+                $statement2 = $pdo->prepare($sql3);
+                $statement2->execute([
+                    ':pomieszczenie_id' => $data['pomieszczenie_id'],
+                ]);
+
+                // fwrite($myfile, $data['pomieszczenie_id'] . PHP_EOL);
+            }
+
+            $sql = "DELETE FROM pietro WHERE pietro_id = :pietro_id";
+            $statement4 = $pdo->prepare($sql);
+            $statement4->execute([
+                ':pietro_id' => $data2['pietro_id'],
+            ]);
+        }
+
         $sql = "DELETE FROM budynek WHERE budynek_id = :id";
         $statement = $pdo->prepare($sql);
         $statement->execute([

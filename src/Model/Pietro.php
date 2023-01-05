@@ -144,7 +144,7 @@ class Pietro
         $statement = $pdo->prepare($sql4);
         $statement->execute(['pietro_id' => $this->getPietroId()]);
 
-        $myfile = fopen("output.txt", "a") or die("Unable to open file!");
+        //$myfile = fopen("output.txt", "a") or die("Unable to open file!");
         while($data = $statement->fetch(\PDO::FETCH_ASSOC)){
             
             $sql2 = "DELETE FROM pracownik_pomieszczenie WHERE pomieszczenie_id = :pomieszczenie_id";
@@ -159,12 +159,9 @@ class Pietro
                 ':pomieszczenie_id' => $data['pomieszczenie_id'],
             ]);
 
-            fwrite($myfile, $data['pomieszczenie_id'] . PHP_EOL);
+           // fwrite($myfile, $data['pomieszczenie_id'] . PHP_EOL);
         }
 
-
-
-        
         $sql = "DELETE FROM pietro WHERE pietro_id = :pietro_id";
         $statement = $pdo->prepare($sql);
         $statement->execute([

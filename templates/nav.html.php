@@ -7,7 +7,7 @@
 
 
 
-    <li><a href="<?= $router->generatePath('pracownik-index') ?>">Pracownicy</a></li>
+    <li><a href="<?= $router->generatePath('budynek-index') ?>">Pracownicy</a></li>
 
 </ul>
 <?php

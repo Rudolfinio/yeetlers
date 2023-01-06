@@ -111,7 +111,7 @@ ob_start(); ?>
             //document.cookies.remove({name: "marekId"});
             console.log(contentuad);
             let budynekInfo = JSON.parse(contentuad);
-            papaj.setContent(`${budynekInfo[0]}<br>${budynekInfo[1]} ${budynekInfo[2]} <br> ${budynekInfo[3]}, ${budynekInfo[4]}<br>${budynekInfo[5]}<br><a id="aWi1Plan">Wyswietl plan</a>`);
+            papaj.setContent(`${budynekInfo[0]}<br>${budynekInfo[1]} ${budynekInfo[2]} <br> ${budynekInfo[3]}, ${budynekInfo[4]}<br>${budynekInfo[5]}<br><a id="${budynekInfo[0]}">Wyswietl plan</a>`);
             
         };
 
@@ -133,13 +133,13 @@ ob_start(); ?>
                 var b = "p" + i;
                 przycisk.id = b;
                 przycisk.className = "przyciski_pietra";
-                if(i!=0)
-                {
-                przycisk.style.cssText = "border-style:solid";
-                }
-                else{
-                    przycisk.style.cssText = "border-style:inset";
-                }
+                // if(i!=0)
+                // {
+                // przycisk.style.cssText = "border-style:solid";
+                // }
+                // else{
+                //     przycisk.style.cssText = "border-style:inset";
+                // }
                 pietra.appendChild(przycisk);
             }
             
@@ -151,9 +151,9 @@ ob_start(); ?>
                 children[j].addEventListener("click", function() {
                     for (var k = 0;k<children.length;k++)
                     {
-                        children[k].style.cssText = "border-style:solid";
+                        children[k].style.cssText = "background-color: #006AFF";
                     }      
-                    this.style.cssText = "border-style:inset";
+                    this.style.cssText = "background-color: #1C4A8B";
                     var a = "wi1-" + this.id.substr(this.id.length -1);
                     document.getElementById("canvas1").style.cssText = `
                     width: 992px;

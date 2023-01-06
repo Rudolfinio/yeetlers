@@ -11,6 +11,6 @@
 <body <?= isset($bodyClass) ? "class='$bodyClass'" : '' ?>>
 <nav><?php require(__DIR__ . DIRECTORY_SEPARATOR . 'nav.html.php') ?></nav>
 <main><?= $main ?? null ?></main>
-<footer>&copy;<?= date('Y') ?> Custom Framework</footer>
+<footer>&copy;<?= date('Y') ?> Donde Framework</footer>
 </body>
 </html>

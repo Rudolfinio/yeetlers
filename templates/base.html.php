@@ -45,6 +45,7 @@ use App\Model\pracownik_pomieszczenie;
 </head>
 <body <?= isset($bodyClass) ? "class='$bodyClass'" : '' ?>>
 <nav><?php require(__DIR__ . DIRECTORY_SEPARATOR . 'nav.html.php') ?></nav>
+<<<<<<< HEAD
 
 <script>
     //PLAN wi1-212
@@ -317,6 +318,10 @@ use App\Model\pracownik_pomieszczenie;
 
 
 
+=======
+<main><?= $main ?? null ?></main>
+<footer>&copy;<?= date('Y') ?> Donde Framework</footer>
+>>>>>>> 8840c69 (plan update)
 </body>
 
 

@@ -19,6 +19,8 @@ ob_start(); ?>
     /* } */
 
     /* rect {
+
+
         fill: #56EB8D;
         fill-opacity: 0%;
     } */
@@ -257,6 +259,7 @@ ob_start(); ?>
         }
         //żeby to działało trzeba jakoś ogarnąć returnowanie 
         zajecia('Sychel Dariusz');
+
     </script>
     
 <?php

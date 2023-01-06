@@ -100,6 +100,22 @@ class pracownik_pomieszczenie
         return $pracownik_pomieszczenie;
     }
 
+    public static function findprac($pracownikid): ?array
+    {
+        $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
+        $sql = 'SELECT * FROM pracownik_pomieszczenie WHERE pracownik_id = :pracownik_id';
+        $statement = $pdo->prepare($sql);
+        $statement->execute(['pracownik_id' => $pracownikid]);
+
+        $pracownicy_pomieszczenia = [];
+        $pracownicy_pomieszczeniaArray = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        foreach ($pracownicy_pomieszczeniaArray as $pracownik_pomieszczenieArray) {
+            $pracownicy_pomieszczenia[] = self::fromArray($pracownik_pomieszczenieArray);
+        }
+
+        return $pracownicy_pomieszczenia;
+    }
+
     public function save(): void
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));

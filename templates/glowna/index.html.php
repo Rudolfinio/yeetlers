@@ -11,9 +11,9 @@ ob_start(); ?>
     <style> 
 
     #pietra {
-        margin-left: 200px;
-        margin-top: 50px;
-        float:left;
+        margin-left: 130px;
+        /* margin-top: 50px; */
+        /* float:left; */
     }
 
     rect {
@@ -24,6 +24,11 @@ ob_start(); ?>
     rect:hover {
         fill-opacity: 25%;  
     }
+
+    /* #wi1-212:hover {
+        fill-opacity: 25%; 
+
+    } */
 
     </style>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
@@ -50,7 +55,7 @@ ob_start(); ?>
 
     <svg id="canvas1"> 
       <g id="shapes">
-        <rect id="212" x="18.6%" y="55.7%" width="3.6%" height="16%"/>
+        <rect id="wi1-212" x="18.6%" y="55.7%" width="3.6%" height="16%"/>
         <rect id="207" x="42%" y="50.5%" width="3.6%" height="21.1%"/>
         <rect id="120" x="25.2%" y="18%" width="3.1%" height="21.1%"/>
       </g>    
@@ -118,13 +123,27 @@ ob_start(); ?>
 
         //PLAN
         function pokaz_plan(budynek_nazwa){
+            var p2 = `        <rect id="wi1-212" x="18.6%" y="55.7%" width="3.6%" height="16%"/>
+                        <rect id="wi1-207" x="42%" y="50.5%" width="3.6%" height="21.1%"/>
+                        `
+            var p1 = ` <rect id="wi1-120" x="25.2%" y="18%" width="3.1%" height="21.1%"/>
+                    `
+            var p0 = `<rect id="wi1-1" x="44.4%" y="65%" width="3.5%" height="6.3%"/>`
+            var p3 = `<rect id="wi1-012" x="28.4%" y="18.6%" width="3.5%" height="20.3%"/>`
+
+            var p_pom = [];
+            p_pom.push(p0,p1,p2,p3);
+
             nazwa_budynku = document.getElementById('nazwa_budynku');
             nazwa_budynku.innerHTML = "<h2>" + budynek_nazwa.toUpperCase() + "<h2>";
             nazwa_budynku.style.cssText = `
+            width:100%;
                 float:left;
-                margin-left: 300px;
+                // margin-left: 300px;
+                text-align:center;
             `
             var pietra = document.getElementById('pietra');
+            pietra.innerText = "";
             for(var i = 0; i<4; i++)
             {
                 var przycisk = document.createElement("button");
@@ -144,14 +163,28 @@ ob_start(); ?>
                 // {
                 // przycisk.style.cssText = "border-style:solid";
                 // }
-                // else{
-                //     przycisk.style.cssText = "border-style:inset";
-                // }
+                if(i==0){
+                    przycisk.style.cssText = "background-color: #1C4A8B";
+                    var pomieszczenia = document.getElementById('shapes');
+                    pomieszczenia.innerHTML = p_pom[0];
+                }
+
                 pietra.appendChild(przycisk);
+
+            //     if(i!=3)
+            //     {
+            //         pietra.appendChild(przycisk);
+            //     }
+            //     else
+            //     {
+            //         pietra.insertBefore(przycisk, pietra.firstChild);
+            //     }
+            
             }
             
             // var children = pietra.children;
             var children = document.getElementsByClassName("przyciski_pietra");
+
             for (var j = 0;j<children.length;j++)
             {
                 // console.log(children[j].innerHTML)
@@ -162,13 +195,35 @@ ob_start(); ?>
                         children[k].style.cssText = "background-color: #006AFF";
                     }      
                     this.style.cssText = "background-color: #1C4A8B";
-                    var a = budynek_nazwa +"-" + this.id.substr(this.id.length -1);
+                    nr_pietra = this.id.substr(this.id.length -1)
+                    var a = budynek_nazwa +"-" + nr_pietra;
                     document.getElementById("canvas1").style.cssText = `
-                    width: 992px;
-                    height: 317px;
-                    background-image: url(plany/${budynek_nazwa}/${a}.svg);
-                    background-size: cover;
-                `   
+                        width: 992px;
+                        height: 317px;
+                        background-image: url(plany/${budynek_nazwa}/${a}.svg);
+                        background-size: cover;
+                    `   
+
+                    var pomieszczenia = document.getElementById('shapes');
+                    pomieszczenia.innerHTML = p_pom[this.id.substr(this.id.length-1)];
+
+
+                    
+                    // var pomieszczenia = document.getElementById("shapes").children;
+                    // // var style = document.getElementsByTagName("style");
+                    // var style = document.createElement("style");
+                    // var css;
+                    // for (var w=0; w<pomieszczenia.length;w++)
+                    // {
+                    //     //nr_pom = w.id.substr(w.id )
+                    //     if(pomieszczenia[w].id.charAt(4) == nr_pietra)
+                    //     {
+                    //          css = "#" + pomieszczenia[w].id + ":hover {fill-opacity: 25%;}";
+                    //          style.appendChild(document.createTextNode(css));
+                    //         // style.styleSheet.cssText = css;
+                    //     }
+                    // }
+                    // document.getElementsByTagName('head')[0].appendChild(style);
                 })
                 
 
@@ -179,6 +234,9 @@ ob_start(); ?>
                 background-image: url(plany/${budynek_nazwa}/${budynek_nazwa}-0.svg);
                 background-size: cover;
             `
+
+            // var nr_pietra = budynek_nazwa.substr(budynek_nazwa.length -1);
+            // console.log(nr_pietra);
         }
 
         console.log(window.location.pathname);

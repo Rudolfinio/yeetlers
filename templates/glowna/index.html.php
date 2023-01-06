@@ -9,25 +9,7 @@ $bodyClass = 'index';
 ob_start(); ?>
 
     <style>
-    #wi1map{
-        height: 200px;
-        width: 300px;
-    }
-
-    #wi2map{
-        height: 200px;
-        width: 300px;
-    }
-
-    #wi1div{
-        float: left;
-        margin-left: 30px;
-    }
-
-    #wi2div{
-        float: left;
-        margin-left: 30px;
-    }
+    
 
     #pietra {
         margin-left: 200px;

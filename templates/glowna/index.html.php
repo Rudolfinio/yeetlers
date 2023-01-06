@@ -123,7 +123,6 @@ ob_start(); ?>
             console.log(budynek_nazwa);
             papaj.setContent(`${budynekInfo[0]}<br>${budynekInfo[1]} ${budynekInfo[2]} <br> ${budynekInfo[3]}, ${budynekInfo[4]}<br>${budynekInfo[5]}<br><a id="${budynekInfo[0]}">Wyswietl plan</a>`);
             document.getElementById(budynekInfo[0]).addEventListener("click", function(){pokaz_plan(budynekInfo[0])});
-
         };
 
         //PLAN
@@ -166,11 +165,11 @@ ob_start(); ?>
             {
                 // console.log(children[j].innerHTML)
                 children[j].addEventListener("click", function() {
-                    // for (var k = 0;k<children.length;k++)
-                    // {
-                    //     children[k].style.cssText = "border-style:solid";
-                    // }      
-                    // this.style.cssText = "border-style:inset";
+                    for (var k = 0;k<children.length;k++)
+                    {
+                        children[k].style.cssText = "background-color: #006AFF";
+                    }      
+                    this.style.cssText = "background-color: #1C4A8B";
                     var a = budynek_nazwa +"-" + this.id.substr(this.id.length -1);
                     document.getElementById("canvas1").style.cssText = `
                     width: 992px;

@@ -5,9 +5,11 @@ $config = new \App\Service\Config();
 
 $templating = new \App\Service\Templating();
 $router = new \App\Service\Router();
+$view = $templating->render('glowna/index.html.php', [
+    'router' => $router,]);
 
-$action = $_REQUEST['action'] ?? null;
-switch ($action) {
+// $action = $_REQUEST['action'] ?? null;
+// switch ($action) {
 //    case 'pomieszczenie-index':
 //    case null:
 //        $controller = new \App\Controller\pomieszczenieController();
@@ -102,41 +104,42 @@ switch ($action) {
 //    default:
 //        $view = 'Not found';
 //        break;
-    case 'budynek-index':
-    case null:
-        $controller = new \App\Controller\budynekController();
-        $view = $controller->indexAction($templating, $router);
-        break;
-    case 'budynek-create':
-        $controller = new \App\Controller\budynekController();
-        $view = $controller->createAction($_REQUEST['budynek'] ?? null, $templating, $router);
-        break;
-    case 'budynek-edit':
-        if (! $_REQUEST['id']) {
-            break;
-        }
-        $controller = new \App\Controller\budynekController();
-        $view = $controller->editAction($_REQUEST['id'], $_REQUEST['budynek'] ?? null, $templating, $router);
-        break;
-    case 'budynek-show':
-        if (! $_REQUEST['id']) {
-            break;
-        }
-        $controller = new \App\Controller\budynekController();
-        $view = $controller->showAction($_REQUEST['id'], $templating, $router);
-        break;
-    case 'budynek-delete':
-        if (! $_REQUEST['id']) {
-            break;
-        }
-        $controller = new \App\Controller\budynekController();
-        $view = $controller->deleteAction($_REQUEST['id'], $router);
-        break;
-    default:
-        $view = 'Not found';
-        break;
+    // case 'budynek-index':
+    // case null:
+    //     $controller = new \App\Controller\budynekController();
+    //     $view = $controller->indexAction($templating, $router);
+    //     break;
+    // case 'budynek-create':
+    //     $controller = new \App\Controller\budynekController();
+    //     $view = $controller->createAction($_REQUEST['budynek'] ?? null, $templating, $router);
+    //     break;
+    // case 'budynek-edit':
+    //     if (! $_REQUEST['id']) {
+    //         break;
+    //     }
+    //     $controller = new \App\Controller\budynekController();
+    //     $view = $controller->editAction($_REQUEST['id'], $_REQUEST['budynek'] ?? null, $templating, $router);
+    //     break;
+    // case 'budynek-show':
+    //     if (! $_REQUEST['id']) {
+    //         break;
+    //     }
+    //     $controller = new \App\Controller\budynekController();
+    //     $view = $controller->showAction($_REQUEST['id'], $templating, $router);
+    //     break;
+    // case 'budynek-delete':
+    //     if (! $_REQUEST['id']) {
+    //         break;
+    //     }
+    //     $controller = new \App\Controller\budynekController();
+    //     $view = $controller->deleteAction($_REQUEST['id'], $router);
+    //     break;
+    // default:
+    //     $view = 'Not found';
+    //     break;
 
-}
+
+// }
 
 if ($view) {
     echo $view;

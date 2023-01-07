@@ -132,6 +132,25 @@ class pracownik
         return $pracownik;
     }
 
+    public static function findname($name, $naziwsko): ?pracownik
+    {
+        $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
+        $sql = 'SELECT * FROM pracownik WHERE imie = :imie AND nazwisko = :nazwisko';
+        $statement = $pdo->prepare($sql);
+        $statement->execute([
+            'imie' => $name,
+            'nazwisko' => $naziwsko
+            ]);
+
+        $pracownikArray = $statement->fetch(\PDO::FETCH_ASSOC);
+        if (! $pracownikArray) {
+            return null;
+        }
+        $pracownik = pracownik::fromArray($pracownikArray);
+
+        return $pracownik;
+    }
+
     public function save(): void
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));

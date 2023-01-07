@@ -40,7 +40,7 @@ ob_start(); ?>
 
     <div id="wi1div">
         <h2 id="wi1h2">WI Budynek 1</h2>
-        <div id="wi1map"></div>
+        <div id="wi1map" ></div>
     </div>
     <div id="wi2div">
         <h2 id="wi2h2">WI Budynek 2</h2>

@@ -12,7 +12,7 @@ use App\Model\pracownik;
 
 
 
-    <li><a href="<?= $router->generatePath('') ?>">Szukaj</a></li>
+    <li><a id="search" onclick="si()">Szukaj</a></li>
 
 
 
@@ -32,7 +32,7 @@ use App\Model\pracownik;
 </ul>
 </div>
 
-<div id="sear" >
+<div id="sear" style="z-index: 2" >
 </div>
 <script>
 
@@ -44,15 +44,15 @@ use App\Model\pracownik;
         }else {
             d.style.width="200px";
             d.style.height="75px";
-            d.style.backgroundColor="yellow";
             d.style.position="absolute";
             d.style.paddingLeft="5px";
             let inn = document.createElement("div");
             let pracownik = document.createElement("a");
             pracownik.innerHTML = "pracownik";
-
+            pracownik.style.color="white";
             let pracownia = document.createElement("a");
             pracownia.innerHTML = "pracownia";
+            pracownia.style.color="white";
             pracownia.style.marginLeft = "5px";
             pracownik.addEventListener("click", function () {
                 inn.innerHTML = "";
@@ -62,23 +62,10 @@ use App\Model\pracownik;
                 let inp = document.createElement("input");
                 inp.type = "text";
                 inp.name = "pracownik";
-                inp.placeholder = "pracownik";
+                inp.placeholder = "imie nazwisko";
                 let sbmt = document.createElement("input");
                 sbmt.setAttribute("type", "submit");
                 sbmt.id="pracownik";
-                //sbmt.addEventListener("click", function (){
-                //    console.log("pracownik");
-                //    let val = document.getElementById('inputpracownik').value;
-                //    console.log(val);
-                //    document.cookie = "name="+val;
-                //  //$XD=  <?php
-                //  //  if(isset($_COOKIE["name"])) {
-                //  //      $somevar = $_COOKIE["name"];
-                //  //      echo $somevar;
-                //  //  }
-                //  //  ?>
-                //  //  console.log($XD);
-                //})
                 frm.appendChild(inp);
                 frm.appendChild(sbmt);
                 inn.appendChild(frm);
@@ -86,22 +73,16 @@ use App\Model\pracownik;
             })
             pracownia.addEventListener("click", function () {
                 inn.innerHTML = "";
-                let frm = document.createElement("div");
+                let frm = document.createElement("form");
+                frm.action="";
+                frm.method="POST";
                 let inp = document.createElement("input");
-                inp.id="inputpracownia";
                 inp.type = "text";
                 inp.name = "pracownia";
-                inp.placeholder = "pracownia";
-                let sbmt = document.createElement("button");
-                sbmt.textContent="submit"
+                inp.placeholder = "budynek-pokoj";
+                let sbmt = document.createElement("input");
+                sbmt.setAttribute("type", "submit");
                 sbmt.id="pracownia";
-                sbmt.addEventListener("click", function (){
-                    console.log("pracownia");
-                    let val = document.getElementById('inputpracownia').value;
-                    console.log(val);
-                })
-
-
                 frm.appendChild(inp);
                 frm.appendChild(sbmt);
                 inn.appendChild(frm);

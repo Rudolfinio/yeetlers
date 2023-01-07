@@ -43,6 +43,19 @@ use App\Model\pracownik_pomieszczenie;
 
             }
         }
+        if(isset($_POST['pracownia'])){
+            $msg= $_POST['pracownia'];
+            $msg=explode("-",$msg);
+            if(sizeof($msg)==2) {
+                if(is_numeric($msg[1])) {
+                    $msg[0] = strtolower($msg[0]);
+                    $pracownia = \App\Model\pomieszczenie_budynek::find($msg[0],$msg[1]);
+                    if($pracownia != null){echo $pracownia->getNazwa(),"-",$pracownia->getNumer();}else{echo "Nie ma takiego pokoju we wskazanym budynku ";}
+
+                }else{echo "Podano nieprawidło numer pokoju ";}
+            }
+        }
+
         ?>
 
     </p></main>

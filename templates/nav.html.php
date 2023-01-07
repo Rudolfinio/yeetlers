@@ -29,7 +29,6 @@ use App\Model\pracownik;
 
 
     <!-- <li id="liWyloguj"><a href="<?= $router->generatePath('') ?>">Wyloguj</a></li> -->
-
 </ul>
 </div>
 

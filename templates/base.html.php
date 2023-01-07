@@ -17,7 +17,6 @@ use App\Model\pracownik_pomieszczenie;
 </head>
 <body <?= isset($bodyClass) ? "class='$bodyClass'" : '' ?>>
 <nav><?php require(__DIR__ . DIRECTORY_SEPARATOR . 'nav.html.php') ?></nav>
-<<<<<<< HEAD
 <main><?= $main ?? null ?>
     <p id="szukaj">
         <?php
@@ -25,25 +24,30 @@ use App\Model\pracownik_pomieszczenie;
         if(isset($_POST['pracownik'])){
             $msg= $_POST['pracownik'];
             $msg=explode(" ",$msg);
-            $msg[0]= strtolower($msg[0]);
-            $msg[1]= strtolower($msg[1]);;
-            $msg[0]= ucfirst($msg[0]);
-            $msg[1]= ucfirst($msg[1]);;
-            $post = pracownik::findname($msg[0], $msg[1]);
+            if(sizeof($msg)==2) {
+                $msg[0] = strtolower($msg[0]);
+                $msg[1] = strtolower($msg[1]);;
+                $msg[0] = ucfirst($msg[0]);
+                $msg[1] = ucfirst($msg[1]);;
+                $post = pracownik::findname($msg[0], $msg[1]);
+                if($post != null) {
+                    $pomieszczenie = pracownik_pomieszczenie::findprac($post->getPracownikId());
+                    if ($pomieszczenie != null) {
+                        echo $post->getTytul(), " ", $post->getImie(), " ", $post->getNazwisko(), " ";
+                        foreach ($pomieszczenie as $pom) {
+                            echo $pom->getPomieszczenie_id(), " ";
+                        }
+                    }else{echo "brak pomieszczenia";}
+                }else{echo "brak takiej osoby";}
+                //echo ($pomieszczenie[0]->getPracownik_id());
 
-            $pomieszczenie = pracownik_pomieszczenie::findprac($post->getPracownikId());
-
-            echo $post->getTytul()," ",$post->getImie()," ",$post->getNazwisko(), " ";
-            foreach ($pomieszczenie as $pom){
-                echo $pom->getPomieszczenie_id(), " ";
             }
-            //echo ($pomieszczenie[0]->getPracownik_id());
-
         }
         ?>
 
     </p></main>
 <footer>&copy;<?= date('Y') ?> Donde Framework</footer>
+
 
 
 

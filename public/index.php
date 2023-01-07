@@ -71,6 +71,7 @@ $view = $templating->render('glowna/index.html.php', [
 //        default:
 //            $view = 'Not found';
 //            break;
+<<<<<<< HEAD
 //    case 'pracownik-index':
 //    case null:
 //        $controller = new \App\Controller\pracownikController();
@@ -137,6 +138,7 @@ $view = $templating->render('glowna/index.html.php', [
     // default:
     //     $view = 'Not found';
     //     break;
+
 
 // }
 

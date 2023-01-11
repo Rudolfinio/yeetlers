@@ -99,22 +99,22 @@ use App\Model\pracownik_pomieszczenie;
                     var a =  "Pietro " + i
                     przycisk.innerHTML = a;    
                 }
-                var b = "p" + i;
+                var b = "b" + i;
                 przycisk.id = b;
                 przycisk.className = "przyciski_pietra";
                 // if(i!=0)
                 // {
                 // przycisk.style.cssText = "border-style:solid";
                 // }
-                if(i==0){
-                    przycisk.style.cssText = "background-color: #1C4A8B";
-                    // var pomieszczenia = document.getElementById('shapes');
-                    // pomieszczenia.innerHTML = "";
-                    // for(const value of Object.values(plan[budynek_nazwa]["p0"]))
-                    // {
-                    //     pomieszczenia.innerHTML += value;
-                    // }
-                }
+                // if(i==0){
+                //     przycisk.style.cssText = "background-color: #1C4A8B";
+                //     // var pomieszczenia = document.getElementById('shapes');
+                //     // pomieszczenia.innerHTML = "";
+                //     // for(const value of Object.values(plan[budynek_nazwa]["p0"]))
+                //     // {
+                //     //     pomieszczenia.innerHTML += value;
+                //     // }
+                // }
 
                 pietra.appendChild(przycisk);
 
@@ -196,6 +196,7 @@ use App\Model\pracownik_pomieszczenie;
                     background-size: cover;
                 `
                 document.getElementById("shapes").style.cssText = "        fill: #56EB8D; fill-opacity: 0%;"
+                document.getElementById("b0").style.cssText = "background-color: #1C4A8B"
             }
             else
             {   
@@ -209,6 +210,7 @@ use App\Model\pracownik_pomieszczenie;
                     background-size: cover;
                 `
                     pomieszczenia.innerHTML = plan[budynek_nazwa]["p0"][pom_numer];
+                    document.getElementById("b0").style.cssText = "background-color: #1C4A8B"
                 }
                 else if(pom_numer.charAt(0)=="0")
                 {
@@ -219,6 +221,7 @@ use App\Model\pracownik_pomieszczenie;
                     background-size: cover;
                 `
                     pomieszczenia.innerHTML = plan[budynek_nazwa]["p3"][pom_numer];
+                    document.getElementById("b3").style.cssText = "background-color: #1C4A8B"
                 }
                 else
                 {
@@ -229,6 +232,7 @@ use App\Model\pracownik_pomieszczenie;
                     background-size: cover;
                 `
                     pomieszczenia.innerHTML = plan[budynek_nazwa]["p"+pom_numer.charAt(0)][pom_numer];
+                    document.getElementById("b"+pom_numer.charAt(0)).style.cssText = "background-color: #1C4A8B"
 
                 }
                 document.getElementById("shapes").style.cssText = "        fill: #56EB8D; fill-opacity: 25%;"

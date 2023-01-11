@@ -9,6 +9,23 @@ class pracownik
     private ?string $imie = null;
     private ?string $nazwisko = null;
     private ?string $tytul = null;
+    private ?int $gabinet = null;
+
+    /**
+     * @return int|null
+     */
+    public function getGabinet(): ?int
+    {
+        return $this->gabinet;
+    }
+
+    /**
+     * @param int|null $gabinet
+     */
+    public function setGabinet(?int $gabinet): void
+    {
+        $this->gabinet = $gabinet;
+    }
 
     /**
      * @return int|null
@@ -96,7 +113,9 @@ class pracownik
         if (isset($array['tytul'])) {
             $this->setTytul($array['tytul']);
         }
-
+        if (isset($array['gabinet'])) {
+            $this->setGabinet($array['gabinet']);
+        }
         return $this;
     }
 
@@ -155,23 +174,25 @@ class pracownik
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
         if (! $this->getPracownikId()) {
-            $sql = "INSERT INTO pracownik (imie, nazwisko, tytul) VALUES (:imie, :nazwisko, :tytul)";
+            $sql = "INSERT INTO pracownik (imie, nazwisko, tytul, gabinet) VALUES (:imie, :nazwisko, :tytul, :gabinet)";
             $statement = $pdo->prepare($sql);
             $statement->execute([
                 'imie' => $this->getImie(),
                 'nazwisko' => $this->getNazwisko(),
                 'tytul' => $this->getTytul(),
+                'gabinet' => $this->getGabinet(),
             ]);
 
             $this->setPracownikId($pdo->lastInsertId());
         } else {
-            $sql = "UPDATE pracownik SET imie = :imie, nazwisko = :nazwisko, tytul = :tytul WHERE pracownik_id = :id";
+            $sql = "UPDATE pracownik SET imie = :imie, nazwisko = :nazwisko, tytul = :tytul, gabinet = :gabinet WHERE pracownik_id = :id";
             $statement = $pdo->prepare($sql);
             $statement->execute([
                 ':imie' => $this->getImie(),
                 ':nazwisko' => $this->getNazwisko(),
                 ':tytul' => $this->getTytul(),
                 ':id' => $this->getPracownikId(),
+                ':gabinet' => $this->getGabinet(),
             ]);
         }
     }
@@ -194,5 +215,6 @@ class pracownik
         $this->setTytul(null);
         $this->setNazwisko(null);
         $this->setImie(null);
+        $this->setGabinet(null);
     }
 }

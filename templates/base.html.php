@@ -1,5 +1,6 @@
 <?php
 
+use App\Model\Pietro;
 use App\Model\pomieszczenie;
 use App\Model\pracownik;
 use App\Model\pracownik_pomieszczenie;
@@ -199,7 +200,7 @@ use App\Model\pracownik_pomieszczenie;
             else
             {   
                 var pomieszczenia = document.getElementById('shapes');
-                if (pom_numer.length=2)
+                if (pom_numer.length<=2)
                 {
                     document.getElementById("canvas1").style.cssText = `
                     width: 992px;
@@ -254,15 +255,27 @@ use App\Model\pracownik_pomieszczenie;
                 $msg[1] = strtolower($msg[1]);;
                 $msg[0] = ucfirst($msg[0]);
                 $msg[1] = ucfirst($msg[1]);;
-                $post = pracownik::findname($msg[0], $msg[1]);
-                if($post != null) {
-                    $pomieszczenie = pracownik_pomieszczenie::findprac($post->getPracownikId());
-                    if ($pomieszczenie != null) {
-                        echo $post->getTytul(), " ", $post->getImie(), " ", $post->getNazwisko(), " ";
-                        foreach ($pomieszczenie as $pom) {
-                            echo $pom->getPomieszczenie_id(), " ";
+                $prac = pracownik::findname($msg[0], $msg[1]);
+                if($prac != null) {
+                    $pracownia = pomieszczenie::find($prac->getGabinet());
+                    if($pracownia!=null){
+                        $pietro = Pietro::find($pracownia->getPietro_id());
+                        if($pietro!=null){
+                            $budynek = \App\Model\budynek::find($pietro->getBudynekId());
+                            echo $budynek->getNazwa()," ",$pracownia->getNumer()," ";
+                            echo "<script type='text/javascript'>pokaz_plan('{$budynek->getNazwa()}','{$pracownia->getNumer()}');</script>";
                         }
-                    }else{echo "brak pomieszczenia";}
+
+                    }else{echo "brak gabinetu";}
+
+//                    $pomieszczenie = pracownik_pomieszczenie::findprac($prac->getPracownikId());
+//                    if ($pomieszczenie != null) {
+//                        echo $prac->getTytul(), " ", $prac->getImie(), " ", $prac->getNazwisko(), " ", $prac->getGabinet(), " ";
+//                        foreach ($pomieszczenie as $pom) {
+//                            if($prac->getGabinet()!=$pom->getPomieszczenie_id())
+//                                echo $pom->getPomieszczenie_id(), " ";
+//                        }
+//                    }else{echo "brak pomieszczenia";}
                 }else{echo "brak takiej osoby";}
                 //echo ($pomieszczenie[0]->getPracownik_id());
 

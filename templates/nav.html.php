@@ -6,6 +6,7 @@
 use App\Model\pracownik;
 
 ?>
+
 <div>
 <ul>
     <li><a href="<?= $router->generatePath('') ?>">Mapa</a></li>
@@ -20,7 +21,7 @@ use App\Model\pracownik;
 
 
 
-    <!-- <li id="liUser"><a href="<?= $router->generatePath('') ?>">Użytkownik |</a></li> -->
+    <li id="liUser"><a>Użytkownik |</a></li>
 
 
 
@@ -35,7 +36,17 @@ use App\Model\pracownik;
 <div id="sear" style="z-index: 2" >
 </div>
 <script>
-
+    let login = '<?php 
+    if(isset($_SESSION['login'])){
+        echo $_SESSION['login'];
+    }
+    ?>';
+    if(login != null){
+        console.log(login);
+        document.getElementById('liUser').style.visibility = 'visible';
+        let pizda = document.getElementById('liUser').children;
+        pizda[0].innerHTML = login+' |';
+    }
     function si(){
         let d = document.getElementById("sear");
         if(d.innerHTML !=""){

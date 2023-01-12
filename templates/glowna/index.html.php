@@ -6,7 +6,7 @@ use \App\Model\budynek;
 $title = 'Main strona';
 $bodyClass = 'index';
 
-
+session_start();
 
 ob_start(); ?>
 

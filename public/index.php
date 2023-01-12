@@ -8,12 +8,22 @@ $router = new \App\Service\Router();
 
 $action = $_REQUEST['action'] ?? null;
 switch ($action) {
+    case 'base':
     case null:
+        $view = $templating->render('glowna/index.html.php', [
+            'router' => $router,]);
+        break;
+    case 'mapa':
         $view = $templating->render('glowna/index.html.php', [
             'router' => $router,]);
         break;
     case 'login-index':
         $view = $templating->render('glowna/login.php', [
+            'router' => $router,
+        ]);
+        break;
+    case 'login-kurwa':
+        $view = $templating->render('glowna/login_script.php', [
             'router' => $router,
         ]);
         break;

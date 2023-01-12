@@ -132,15 +132,15 @@ INSERT IGNORE INTO `pracownik_pomieszczenie` (`pracownik_pomieszczenie_id`, `pra
 -- Dumping structure for table projekt.uzytkownik
 CREATE TABLE IF NOT EXISTS `uzytkownik` (
   `uzytkownik_id` int(11) NOT NULL AUTO_INCREMENT,
-  `login` varchar(50) COLLATE utf8_polish_ci NOT NULL,
+  `log` varchar(50) COLLATE utf8_polish_ci NOT NULL,
   `haslo` varchar(50) COLLATE utf8_polish_ci NOT NULL,
   PRIMARY KEY (`uzytkownik_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
 
 -- Dumping data for table projekt.uzytkownik: ~1 rows (approximately)
 /*!40000 ALTER TABLE `uzytkownik` DISABLE KEYS */;
-INSERT IGNORE INTO `uzytkownik` (`uzytkownik_id`, `login`, `haslo`) VALUES
-	(1, 'admin\r\n', 'Admin1!');
+INSERT IGNORE INTO `uzytkownik` (`uzytkownik_id`, `log`, `haslo`) VALUES
+	(1, 'admin', 'Admin1!');
 /*!40000 ALTER TABLE `uzytkownik` ENABLE KEYS */;
 
 -- Dumping structure for view projekt.pomieszczenie_budynek

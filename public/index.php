@@ -27,6 +27,10 @@ switch ($action) {
             'router' => $router,
         ]);
         break;
+    case 'logout-index':
+        $view = $templating->render('glowna/logout.php', [
+            'router' => $router,]);
+        break;
 
 }
 // $action = $_REQUEST['action'] ?? null;

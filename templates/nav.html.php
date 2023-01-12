@@ -41,11 +41,16 @@ use App\Model\pracownik;
         echo $_SESSION['login'];
     }
     ?>';
-    if(login != null){
+    if(login != ''){
+        let logout = document.getElementById('liLogowanie');
+        logout.innerHTML = '<a href="<?= $router->generatePath('logout-index') ?>">Wyloguj</a>';
         console.log(login);
         document.getElementById('liUser').style.visibility = 'visible';
         let pizda = document.getElementById('liUser').children;
         pizda[0].innerHTML = login+' |';
+    }else{
+        let logout = document.getElementById('liLogowanie');
+        logout.innerHTML = '<a href="<?= $router->generatePath('login-index') ?>">Logowanie</a>';
     }
     function si(){
         let d = document.getElementById("sear");

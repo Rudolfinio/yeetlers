@@ -52,7 +52,7 @@ ob_start();
     <div class="formularz">
       <form id="log1" action="<?= $router->generatePath('login-kurwa') ?>" method="post">
         Login: <input class="lol" type="text" name="login" placeholder="Twoj login"><br>
-        Haslo: <input class="lol" type="text" name="haslo" placeholder="Twoje haslo"><br>
+        Haslo: <input class="lol" type="password" name="haslo" placeholder="Twoje haslo"><br>
         <input id="sub" type="submit" value="Zaloguj sie">
       </form>
     </div>

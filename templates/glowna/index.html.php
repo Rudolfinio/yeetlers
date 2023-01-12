@@ -1,10 +1,12 @@
 <?php
 
 /** @var \App\Service\Router $router */
+$templating = new \App\Service\Templating();
 use \App\Model\budynek;
 $title = 'Main strona';
 $bodyClass = 'index';
 
+session_start();
 
 ob_start(); ?>
 
@@ -124,6 +126,8 @@ ob_start(); ?>
         
     </script>
     
-<?php $main = ob_get_clean();
+<?php
+
+$main = ob_get_clean();
 
 include __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'base.html.php';

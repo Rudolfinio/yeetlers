@@ -5,9 +5,20 @@ $config = new \App\Service\Config();
 
 $templating = new \App\Service\Templating();
 $router = new \App\Service\Router();
-$view = $templating->render('glowna/index.html.php', [
-    'router' => $router,]);
 
+$action = $_REQUEST['action'] ?? null;
+switch ($action) {
+    case null:
+        $view = $templating->render('glowna/index.html.php', [
+            'router' => $router,]);
+        break;
+    case 'login-index':
+        $view = $templating->render('glowna/login.php', [
+            'router' => $router,
+        ]);
+        break;
+
+}
 // $action = $_REQUEST['action'] ?? null;
 // switch ($action) {
 //    case 'pomieszczenie-index':

@@ -1,5 +1,6 @@
 <?php
-
+$templating = new \App\Service\Templating();
+$router = new \App\Service\Router();
 use App\Model\Pietro;
 use App\Model\pomieszczenie;
 use App\Model\pracownik;
@@ -310,6 +311,7 @@ use App\Model\pracownik_pomieszczenie;
         
         
     </p></main>
+
 <footer>&copy;<?= date('Y') ?> Donde Framework</footer>
 
 

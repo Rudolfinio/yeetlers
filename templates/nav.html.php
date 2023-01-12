@@ -24,7 +24,7 @@ use App\Model\pracownik;
 
 
 
-    <li id="liLogowanie"><a href="<?= $router->generatePath('') ?>">Logowanie</a></li>
+    <li id="liLogowanie"><a href="<?= $router->generatePath('login-index') ?>">Logowanie</a></li>
 
 
 

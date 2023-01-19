@@ -9,13 +9,11 @@ $bodyClass = 'index';
 ob_start(); 
 session_start();
 ?>
-    <h1>
-        Panel Administratora
-    </h1>
     <div class = "nawigacja">
+        <h2>Panel Administratora</h2>
         <ul>
             
-            <li><a href="<?= $router->generatePath('pracownik-index');?>">Pracownicy</a></li>
+            <li><a href="<?= $router->generatePath('pracownik-index');?>" style="color: #006AFF">Pracownicy</a></li>
 
             <li><a href="<?= $router->generatePath('pomieszczenie-index');?>">Pomieszczenia</a></li>
 
@@ -25,17 +23,15 @@ session_start();
         </ul>
     </div>
     <div class = "import">
-        <li>Import pracowników z pliku CSV</li>
-        <li><a href="<?php $router->generatePath(""); ?>">Wybierz plik</a></li>
+        <p>Import pracowników z pliku CSV</p>
+        <a href="<?php $router->generatePath(""); ?>">Wybierz plik</a>
     </div>
-
-    <h2>Pracownicy</h2>
     
-    <a href="<?= $router->generatePath('pracownik-create') ?>">Create new</a>
+    <a id="dodajPrac" href="<?= $router->generatePath('pracownik-create') ?>">Dodaj pracownika</a>
 
     <ul class="index-list">
         <?php foreach ($posts as $post): ?>
-            <li><h3><?= $post->getTytul()  ?> <?= $post->getImie()  ?> <?= $post->getNazwisko()  ?></h3>
+            <li><p><?= $post->getTytul()  ?> <?= $post->getImie()  ?> <?= $post->getNazwisko()  ?></p>
                 <ul class="action-list">
                     <li><a href="<?= $router->generatePath('pracownik-show', ['id' => $post->getPracownikId()]) ?>">Details</a></li>
                     <li><a href="<?= $router->generatePath('pracownik-edit', ['id' => $post->getPracownikId()]) ?>">Edit</a></li>

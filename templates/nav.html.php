@@ -6,30 +6,24 @@
 use App\Model\pracownik;
 
 ?>
-
 <div>
 <ul>
     <li><a href="<?= $router->generatePath('') ?>">Mapa</a></li>
 
 
-
     <li><a id="search" onclick="si()">Szukaj</a></li>
-
 
 
     <li id="liPanel"><a href="<?= $router->generatePath('admin-index') ?>">Panel administratora</a></li>
 
 
-
-    <li id="liLogowanie"><a href="<?= $router->generatePath('login-index') ?>">Logowanie</a></li>
-
+    <li id="liLogowanie"><a href="<?= $router->generatePath('') ?>">Logowanie</a></li>
 
 
-    <li id="liUser" ><a>Użytkownik |</a></li>
+    <li id="liUser"><a>Użytkownik |</a></li>
 
 
-
-    <!-- <li id="liWyloguj"><a href="<?= $router->generatePath('') ?>">Wyloguj</a></li> -->
+    
 </ul>
 </div>
 

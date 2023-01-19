@@ -31,6 +31,34 @@ switch ($action) {
         $view = $templating->render('glowna/logout.php', [
             'router' => $router,]);
         break;
+    case 'admin-index':
+        $view = $templating->render('glowna/admin.php', [
+            'router' => $router,]);
+        break;
+    case 'pracownik-index':
+        $controller = new \App\Controller\pracownikController();
+        $view = $controller->indexAction($templating, $router);
+        break;
+    default:
+        $myfile = fopen("output.txt", "w") or die("Unable to open file!");
+        fwrite($myfile, 'nie dziala');
+    // case 'pracownicy-index':
+    //     $view = $templating->render('pracownik/index.html.php', [
+    //         'router' => $router,]);
+    //     break;
+    // case 'pomieszczenia-index':
+    //     $view = $templating->render('pomieszczenie/index.html.php', [
+    //         'router' => $router,]);
+    //     break;
+    // // case 'prac-pom-index':
+    // //     $view = $templating->render('glowna/admin.php', [
+    // //         'router' => $router,]);
+    // //     break;
+    // case 'pietra-index':
+    //     $view = $templating->render('pietro/index.html.php', [
+    //         'router' => $router,]);
+    //     break;
+    
 
 }
 // $action = $_REQUEST['action'] ?? null;

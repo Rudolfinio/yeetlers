@@ -6,9 +6,30 @@
 $title = 'Pracownik List';
 $bodyClass = 'index';
 
-ob_start(); ?>
-    <h1>Posts List</h1>
+ob_start(); 
+session_start();
+?>
+    <h1>
+        Panel Administratora
+    </h1>
+    <div class = "nawigacja">
+        <ul>
+            <li><a href="<?php //$router->redirect($router->generatePath('pracownik-index'));  ?>">Pracownicy</a></li>
 
+            <li><a>Pomieszczenia</a></li>
+
+            <li><a>Pracownicy-Pomieszczenia</a></li>
+
+            <li><a>Piętra</a></li>
+        </ul>
+    </div>
+    <div class = "import">
+        <li>Import pracowników z pliku CSV</li>
+        <li><a href="<?php $router->generatePath(""); ?>">Wybierz plik</a></li>
+    </div>
+
+    <h2>Pracownicy</h2>
+    
     <a href="<?= $router->generatePath('pracownik-create') ?>">Create new</a>
 
     <ul class="index-list">

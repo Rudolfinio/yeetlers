@@ -9,11 +9,15 @@
 
 <div class="form-group">
     <label for="nazwisko">Nazwisko</label>
-    <textarea id="nazwisko" name="pracownik[nazwisko]"><?= $post? $post->getNazwisko() : '' ?></textarea>
+    <input id="nazwisko" name="pracownik[nazwisko]"><?= $post? $post->getNazwisko() : '' ?></input>
 </div>
 <div class="form-group">
     <label for="tytul">Tytul</label>
-    <textarea id="tytul" name="pracownik[tytul]"><?= $post? $post->getTytul() : '' ?></textarea>
+    <input id="tytul" name="pracownik[tytul]"><?= $post? $post->getTytul() : '' ?></input>
+</div>
+<div class="form-group">
+    <label for="gabinet">Gabinet</label>
+    <input id="gabinet" name="pracownik[gabinet]"><?= $post? $post->getGabinet() : '' ?></input>
 </div>
 <div class="form-group">
     <label></label>

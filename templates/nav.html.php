@@ -17,15 +17,15 @@ use App\Model\pracownik;
 
 
 
-    <!-- <li id="liPanel"><a href="<?= $router->generatePath('') ?>">Panel administratora</a></li> -->
-
-
-
-    <li id="liUser"><a>Użytkownik |</a></li>
+    <li id="liPanel"><a href="<?= $router->generatePath('admin-index') ?>">Panel administratora</a></li>
 
 
 
     <li id="liLogowanie"><a href="<?= $router->generatePath('login-index') ?>">Logowanie</a></li>
+
+
+
+    <li id="liUser" ><a>Użytkownik |</a></li>
 
 
 
@@ -42,6 +42,7 @@ use App\Model\pracownik;
     }
     ?>';
     if(login != ''){
+        document.getElementById('liPanel').style.visibility = 'visible';
         let logout = document.getElementById('liLogowanie');
         logout.innerHTML = '<a href="<?= $router->generatePath('logout-index') ?>">Wyloguj</a>';
         console.log(login);

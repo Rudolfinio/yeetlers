@@ -11,6 +11,7 @@ ob_start(); ?>
     <article>
         <?= $post->getImie();?>
         <?= $post->getTytul();?>
+        <?= $post->getGabinet();?>
     </article>
 
     <ul class="action-list">

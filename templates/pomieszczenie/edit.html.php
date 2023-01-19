@@ -6,7 +6,9 @@
 $title = "Edit pomieszczenie {$pomieszczenie->getNumer()} ({$pomieszczenie->getPomieszczenie_id()})";
 $bodyClass = "edit";
 
-ob_start(); ?>
+ob_start(); 
+session_start();
+?>
     <h1><?= $title ?></h1>
     <form action="<?= $router->generatePath('pomieszczenie-edit') ?>" method="post" class="edit-form">
         <?php require __DIR__ . DIRECTORY_SEPARATOR . '_form.html.php'; ?>

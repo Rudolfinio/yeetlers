@@ -16,9 +16,11 @@ use App\Model\pracownik;
 
     <li id="liPanel"><a href="<?= $router->generatePath('admin-index') ?>">Panel administratora</a></li>
 
-    <li id="liUser"><a>Użytkownik |</a></li>
 
     <li id="liLogowanie"><a href="<?= $router->generatePath('') ?>">Logowanie</a></li>
+
+
+    <li id="liUser"><a>Użytkownik |</a></li>
 
 
     

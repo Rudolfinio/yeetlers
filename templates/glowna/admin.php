@@ -24,18 +24,19 @@ if(!isset($_SESSION['login']) || $_SESSION['login'] == ''){
     </h1>
     <div class = "nawigacja">
         <ul>
-            <li><a href="<?php $router->redirect($router->generatePath('pracownik-index'));  ?>">Pracownicy</a></li>
+            
+            <li><a href="<?= $router->generatePath('pracownik-index');?>">Pracownicy</a></li>
 
-            <li><a >Pomieszczenia</a></li>
+            <li><a href="<?= $router->generatePath('pomieszczenie-index');?>">Pomieszczenia</a></li>
 
             <li><a>Pracownicy-Pomieszczenia</a></li>
 
-            <li><a>Piętra</a></li>
+            <li><a href="<?= $router->generatePath('Pietro-index');?>">Piętra</a></li>
         </ul>
     </div>
     <div class = "import">
         <li>Import pracowników z pliku CSV</li>
-        <li><a href="<?php $router->generatePath("") ?>">Wybierz plik</a></li>
+        <li><a href="<?= $router->generatePath("") ?>">Wybierz plik</a></li>
     </div>
 </html>
 

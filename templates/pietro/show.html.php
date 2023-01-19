@@ -6,7 +6,8 @@
 $title = "{$Pietro->getBudynekId()} ({$Pietro->getPietroId()})";
 $bodyClass = 'show';
 
-ob_start(); ?>
+ob_start(); 
+?>
     <h1><?= $Pietro->getBudynekId() ?></h1>
     <article>
         <?= $Pietro->getNazwa();?>

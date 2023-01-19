@@ -6,7 +6,9 @@
 $title = "{$pomieszczenie->getNumer()} ({$pomieszczenie->getPomieszczenie_id()})";
 $bodyClass = 'show';
 
-ob_start(); ?>
+ob_start(); 
+session_start();
+?>
     <h1><?= $pomieszczenie->getNumer() ?></h1>
     <article>
         <?= $pomieszczenie->getPietro_id();?>

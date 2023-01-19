@@ -64,26 +64,66 @@ switch ($action) {
         $controller = new \App\Controller\pracownikController();
         $view = $controller->deleteAction($_REQUEST['id'], $router);
         break;
-    
+    case 'pomieszczenie-index':
+        $controller = new \App\Controller\pomieszczenieController();
+        $view = $controller->indexAction($templating, $router);
+        break;
+    case 'pomieszczenie-create':
+        $controller = new \App\Controller\pomieszczenieController();
+        $view = $controller->createAction($_REQUEST['pomieszczenie'] ?? null, $templating, $router);
+        break;
+    case 'pomieszczenie-edit':
+        if (! $_REQUEST['id']) {
+            break;
+        }
+        $controller = new \App\Controller\pomieszczenieController();
+        $view = $controller->editAction($_REQUEST['id'], $_REQUEST['pomieszczenie'] ?? null, $templating, $router);
+        break;
+    case 'pomieszczenie-show':
+        if (! $_REQUEST['id']) {
+            break;
+        }
+        $controller = new \App\Controller\pomieszczenieController();
+        $view = $controller->showAction($_REQUEST['id'], $templating, $router);
+        break;
+    case 'pomieszczenie-delete':
+        if (! $_REQUEST['id']) {
+            break;
+        }
+        $controller = new \App\Controller\pomieszczenieController();    
+    case 'Pietro-index':
+        $controller = new \App\Controller\PietroController();
+        $view = $controller->indexAction($templating, $router);
+        break;
+    case 'Pietro-create':
+        $controller = new \App\Controller\PietroController();
+        $view = $controller->createAction($_REQUEST['Pietro'] ?? null, $templating, $router);
+        break;
+    case 'Pietro-edit':
+        if (! $_REQUEST['id']) {
+            break;
+        }
+        $controller = new \App\Controller\PietroController();
+        $view = $controller->editAction($_REQUEST['id'], $_REQUEST['Pietro'] ?? null, $templating, $router);
+        break;
+    case 'Pietro-show':
+        if (! $_REQUEST['id']) {
+            break;
+        }
+        $controller = new \App\Controller\PietroController();
+        $view = $controller->showAction($_REQUEST['id'], $templating, $router);
+        break;
+    case 'Pietro-delete':
+        if (! $_REQUEST['id']) {
+            break;
+        }
+        $controller = new \App\Controller\PietroController();
+        $view = $controller->deleteAction($_REQUEST['id'], $router);
+        break;
     default:
         $myfile = fopen("output.txt", "w") or die("Unable to open file!");
         fwrite($myfile, 'nie dziala');
-    // case 'pracownicy-index':
-    //     $view = $templating->render('pracownik/index.html.php', [
-    //         'router' => $router,]);
-    //     break;
-    // case 'pomieszczenia-index':
-    //     $view = $templating->render('pomieszczenie/index.html.php', [
-    //         'router' => $router,]);
-    //     break;
-    // // case 'prac-pom-index':
-    // //     $view = $templating->render('glowna/admin.php', [
-    // //         'router' => $router,]);
-    // //     break;
-    // case 'pietra-index':
-    //     $view = $templating->render('pietro/index.html.php', [
-    //         'router' => $router,]);
-    //     break;
+
     
 
 }

@@ -6,7 +6,8 @@
 $title = "Edit Pracownik {$post->getTytul()} {$post->getImie()} {$post->getNazwisko()} ";
 $bodyClass = "edit";
 
-ob_start(); ?>
+ob_start();
+session_start();?>
     <h1><?= $title ?></h1>
     <form action="<?= $router->generatePath('pracownik-edit') ?>" method="post" class="edit-form">
         <?php require __DIR__ . DIRECTORY_SEPARATOR . '_form.html.php'; ?>

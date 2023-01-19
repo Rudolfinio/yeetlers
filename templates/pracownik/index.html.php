@@ -12,13 +12,14 @@ session_start();
     <div class = "nawigacja">
         <h2>Panel Administratora</h2>
         <ul>
-            <li><a href="<?php //$router->redirect($router->generatePath('pracownik-index'));  ?>" style="color: #006AFF">Pracownicy</a></li>
+            
+            <li><a href="<?= $router->generatePath('pracownik-index');?>" style="color: #006AFF">Pracownicy</a></li>
 
-            <li><a>Pomieszczenia</a></li>
+            <li><a href="<?= $router->generatePath('pomieszczenie-index');?>">Pomieszczenia</a></li>
 
             <li><a>Pracownicy-Pomieszczenia</a></li>
 
-            <li><a>Piętra</a></li>
+            <li><a href="<?= $router->generatePath('Pietro-index');?>">Piętra</a></li>
         </ul>
     </div>
     <div class = "import">

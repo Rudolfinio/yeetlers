@@ -6,11 +6,14 @@
 $title = "{$post->getTytul()} {$post->getImie()} {$post->getNazwisko()}";
 $bodyClass = 'show';
 
-ob_start(); ?>
+ob_start(); 
+session_start();
+?>
     <h1><?= $post->getNazwisko() ?></h1>
     <article>
         <?= $post->getImie();?>
         <?= $post->getTytul();?>
+        <?= $post->getGabinet();?>
     </article>
 
     <ul class="action-list">

@@ -6,8 +6,30 @@
 $title = 'Pietro List';
 $bodyClass = 'index';
 
-ob_start(); ?>
-    <h1>Pietra List</h1>
+ob_start(); 
+session_start();
+?>
+    <h1>
+        Panel Administratora
+    </h1>
+    <div class = "nawigacja">
+        <ul>
+            
+            <li><a href="<?= $router->generatePath('pracownik-index');?>">Pracownicy</a></li>
+
+            <li><a href="<?= $router->generatePath('pomieszczenie-index');?>">Pomieszczenia</a></li>
+
+            <li><a>Pracownicy-Pomieszczenia</a></li>
+
+            <li><a href="<?= $router->generatePath('Pietro-index');?>">Piętra</a></li>
+        </ul>
+    </div>
+    <div class = "import">
+        <li>Import pracowników z pliku CSV</li>
+        <li><a href="<?= $router->generatePath("") ?>">Wybierz plik</a></li>
+    </div>
+
+    <h2>Pietra List</h2>
 
     <a href="<?= $router->generatePath('Pietro-create') ?>">Create new</a>
 

@@ -9,15 +9,15 @@
 
 <div class="form-group">
     <label for="nazwisko">Nazwisko</label>
-    <input id="nazwisko" name="pracownik[nazwisko]"><?= $post? $post->getNazwisko() : '' ?></input>
+    <input type="text" id="nazwisko" name="pracownik[nazwisko]" value="<?= $post? $post->getNazwisko() : '' ?>">
 </div>
 <div class="form-group">
     <label for="tytul">Tytul</label>
-    <input id="tytul" name="pracownik[tytul]"><?= $post? $post->getTytul() : '' ?></input>
+    <input type="text" id="tytul" name="pracownik[tytul]" value="<?= $post? $post->getTytul() : '' ?>">
 </div>
 <div class="form-group">
     <label for="gabinet">Gabinet</label>
-    <input id="gabinet" name="pracownik[gabinet]"><?= $post? $post->getGabinet() : '' ?></input>
+    <input type="text" id="gabinet" name="pracownik[gabinet]" value="<?= $post? $post->getGabinet() : '' ?>">
 </div>
 <div class="form-group">
     <label></label>

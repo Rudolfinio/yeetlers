@@ -19,10 +19,8 @@ if(!isset($_SESSION['login']) || $_SESSION['login'] == ''){
 ?>
 
 <html>
-    <h1>
-        Panel Administratora
-    </h1>
     <div class = "nawigacja">
+    <h2>Panel Administratora</h2>
         <ul>
             
             <li><a href="<?= $router->generatePath('pracownik-index');?>">Pracownicy</a></li>
@@ -33,10 +31,6 @@ if(!isset($_SESSION['login']) || $_SESSION['login'] == ''){
 
             <li><a href="<?= $router->generatePath('Pietro-index');?>">Piętra</a></li>
         </ul>
-    </div>
-    <div class = "import">
-        <li>Import pracowników z pliku CSV</li>
-        <li><a href="<?= $router->generatePath("") ?>">Wybierz plik</a></li>
     </div>
 </html>
 

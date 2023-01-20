@@ -217,4 +217,16 @@ class pracownik
         $this->setImie(null);
         $this->setGabinet(null);
     }
+
+    public static function purge(): void
+    {
+        $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
+        $sql = "DELETE FROM pracownik_pomieszczenie";
+        $sql2 = "DELETE FROM pracownik";
+        $statement = $pdo->prepare($sql);
+        $statement->execute();
+        $statement = $pdo->prepare($sql2);
+        $statement->execute();
+    }
+
 }

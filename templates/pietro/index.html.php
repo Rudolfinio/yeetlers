@@ -24,10 +24,6 @@ session_start();
             <li><a href="<?= $router->generatePath('Pietro-index');?>">Piętra</a></li>
         </ul>
     </div>
-    <div class = "import">
-        <li>Import pracowników z pliku CSV</li>
-        <li><a href="<?= $router->generatePath("") ?>">Wybierz plik</a></li>
-    </div>
 
     <h2>Pietra List</h2>
 

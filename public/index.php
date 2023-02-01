@@ -90,7 +90,9 @@ switch ($action) {
         if (! $_REQUEST['id']) {
             break;
         }
-        $controller = new \App\Controller\pomieszczenieController();    
+        $controller = new \App\Controller\pomieszczenieController();
+        $view = $controller->deleteAction($_REQUEST['id'], $router);
+        break;    
     case 'Pietro-index':
         $controller = new \App\Controller\PietroController();
         $view = $controller->indexAction($templating, $router);

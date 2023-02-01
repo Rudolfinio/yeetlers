@@ -2,15 +2,15 @@
 
 /** @var \App\Model\Pietro $Pietro */
 /** @var \App\Service\Router $router */
-
+use \App\Model\budynek;
 $title = "{$Pietro->getBudynekId()} ({$Pietro->getPietroId()})";
 $bodyClass = 'show';
 
 ob_start(); 
 ?>
-    <h1><?= $Pietro->getBudynekId() ?></h1>
+    <h1><?= $Pietro->getNazwa() ?></h1>
     <article>
-        <?= $Pietro->getNazwa();?>
+        <?= budynek::find($Pietro->getBudynekId())->getNazwa()." ".$Pietro->getNazwa();?>
     </article>
 
     <ul class="action-list">

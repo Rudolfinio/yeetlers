@@ -99,6 +99,7 @@ class pomieszczenie
 
         return $pomieszczenie;
     }
+
     public static function findpom($nr_pomieszczenia): ?pomieszczenie
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
@@ -114,6 +115,23 @@ class pomieszczenie
 
         return $pomieszczenie;
     }
+
+    public static function findPomPietro($nr_pomieszczenia, $pietro_id): ?pomieszczenie
+    {
+        $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
+        $sql = 'SELECT * FROM pomieszczenie WHERE numer = :nr_pomieszczenia AND pietro_id = :pietro_id';
+        $statement = $pdo->prepare($sql);
+        $statement->execute(['nr_pomieszczenia' => $nr_pomieszczenia]);
+
+        $pomieszczenieArray = $statement->fetch(\PDO::FETCH_ASSOC);
+        if (! $pomieszczenieArray) {
+            return null;
+        }
+        $pomieszczenie = pomieszczenie::fromArray($pomieszczenieArray);
+
+        return $pomieszczenie;
+    }
+
     public function save(): void
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));

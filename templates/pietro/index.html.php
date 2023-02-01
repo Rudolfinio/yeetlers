@@ -9,10 +9,8 @@ $bodyClass = 'index';
 ob_start(); 
 session_start();
 ?>
-    <h1>
-        Panel Administratora
-    </h1>
     <div class = "nawigacja">
+        <h2>Panel Administratora</h2>
         <ul>
             
             <li><a href="<?= $router->generatePath('pracownik-index');?>">Pracownicy</a></li>
@@ -21,17 +19,15 @@ session_start();
 
             <li><a>Pracownicy-Pomieszczenia</a></li>
 
-            <li><a href="<?= $router->generatePath('Pietro-index');?>">Piętra</a></li>
+            <li><a href="<?= $router->generatePath('Pietro-index');?>" style="color: #006AFF">Piętra</a></li>
         </ul>
     </div>
 
-    <h2>Pietra List</h2>
-
-    <a href="<?= $router->generatePath('Pietro-create') ?>">Create new</a>
+    <a id="dodajPietro" href="<?= $router->generatePath('Pietro-create') ?>">Dodaj piętro</a>
 
     <ul class="index-list">
         <?php foreach ($Pietra as $Pietro): ?>
-            <li><h3><?= $Pietro->getBudynekId() ?></h3>
+            <li><p><?= $Pietro->getNazwa() ?></p>
                 <ul class="action-list">
                     <li><a href="<?= $router->generatePath('Pietro-show', ['id' => $Pietro->getPietroId()]) ?>">Details</a></li>
                     <li><a href="<?= $router->generatePath('Pietro-edit', ['id' => $Pietro->getPietroId()]) ?>">Edit</a></li>

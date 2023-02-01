@@ -126,13 +126,13 @@ ob_start(); ?>
         };
 
         
-        function zajecia(nazwa){
+        async function zajecia(nazwa){
             let today = new Date();
             let todayDay = today.toISOString().slice(0, 10);
             let todayTime = today.getHours();
             let zajeciaInfo = [];
             //`https://plan.zut.edu.pl/schedule_student.php?teacher=${nazwa}&start=${today}`
-            fetch(`https://cors-anywhere.herokuapp.com/https://plan.zut.edu.pl/schedule_student.php?teacher=${nazwa}&start=${todayDay}T${todayTime}`)
+            let data = await fetch(`https://cors-anywhere.herokuapp.com/https://plan.zut.edu.pl/schedule_student.php?teacher=${nazwa}&start=${todayDay}T${todayTime}`)
                 .then((response) => {
                     console.log(response);
                     //--> [object Response]
@@ -143,7 +143,7 @@ ob_start(); ?>
                 })
                 .then((data) => {
                     
-                    console.log(data);
+                    //console.log(data);
                     //sprawdzanie czy jest odpowiednia godzina, ale to zależy czy plan.zut updateuje jako 1 pozycję najbliższe / trwające zajęcia
                     for(let i = 1; i < data.length; i++){
                         if(data[i].start.split('T')[0] == todayDay){
@@ -156,6 +156,7 @@ ob_start(); ?>
                                 if(data[i].room !== null){
                                     zajeciaInfo.push(data[i].room);
                                 }
+                                return zajeciaInfo;
                             }
                         }
                     }
@@ -170,6 +171,7 @@ ob_start(); ?>
                                 if(data[i].room !== null){
                                     zajeciaInfo.push(data[i].room);
                                 }
+                                return zajeciaInfo;
                                 break;
                             }
                     }
@@ -184,15 +186,10 @@ ob_start(); ?>
                     // }
                     
                 })
-                .then((zajeciaInfo) => {
-                    return zajeciaInfo
-                });
-                
-            
+                return data;
         }
-        //żeby to działało trzeba jakoś ogarnąć returnowanie 
-        zajecia('Sychel Dariusz');
-
+        // //żeby to działało trzeba jakoś ogarnąć returnowanie 
+        (async () => {console.log(await zajecia('Sychel Dariusz'))})();
     </script>
     
 <?php

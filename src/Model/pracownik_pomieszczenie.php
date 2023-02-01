@@ -68,6 +68,7 @@ class pracownik_pomieszczenie
         return $this;
     }
 
+
     public static function findAll(): array
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
@@ -139,6 +140,7 @@ class pracownik_pomieszczenie
         }
     }
 
+    
     public function delete(): void
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));

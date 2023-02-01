@@ -2,22 +2,20 @@
 
 /** @var \App\Model\pomieszczenie[] $pomieszczenia */
 /** @var \App\Service\Router $router */
-
+use \App\Model\Pietro;
 $title = 'Pomieszczenie List';
 $bodyClass = 'index';
 
 ob_start(); 
 session_start();
 ?>
-    <h1>
-        Panel Administratora
-    </h1>
     <div class = "nawigacja">
+        <h2>Panel Administratora</h2>
         <ul>
             
             <li><a href="<?= $router->generatePath('pracownik-index');?>">Pracownicy</a></li>
 
-            <li><a href="<?= $router->generatePath('pomieszczenie-index');?>">Pomieszczenia</a></li>
+            <li><a href="<?= $router->generatePath('pomieszczenie-index');?>" style="color: #006AFF">Pomieszczenia</a></li>
 
             <li><a>Pracownicy-Pomieszczenia</a></li>
 
@@ -25,13 +23,11 @@ session_start();
         </ul>
     </div>
 
-    <h2>Pomieszczenia</h2>
-
-    <a href="<?= $router->generatePath('pomieszczenie-create') ?>">Create new</a>
+    <a id="dodajPom" href="<?= $router->generatePath('pomieszczenie-create') ?>">Dodaj pomieszczenie</a>
 
     <ul class="index-list">
         <?php foreach ($pomieszczenia as $pomieszczenie): ?>
-            <li><h3><?= $pomieszczenie->getNumer() ?></h3>
+            <li><p><?= $pomieszczenie->getNumer()." ".Pietro::find($pomieszczenie->getPietro_id())->getNazwa() ?></p>
                 <ul class="action-list">
                     <li><a href="<?= $router->generatePath('pomieszczenie-show', ['id' => $pomieszczenie->getPomieszczenie_id()]) ?>">Details</a></li>
                     <li><a href="<?= $router->generatePath('pomieszczenie-edit', ['id' => $pomieszczenie->getPomieszczenie_id()]) ?>">Edit</a></li>

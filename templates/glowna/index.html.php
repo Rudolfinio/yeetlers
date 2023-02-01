@@ -121,78 +121,11 @@ ob_start(); ?>
             //document.cookies.remove({name: "marekId"});
             console.log(contentuad);
             let budynekInfo = JSON.parse(contentuad);
-            let budynek_nazwa = budynekInfo[0];
-            console.log(budynek_nazwa);
             papaj.setContent(`${budynekInfo[0]}<br>${budynekInfo[1]} ${budynekInfo[2]} <br> ${budynekInfo[3]}, ${budynekInfo[4]}<br>${budynekInfo[5]}<br><a id="${budynekInfo[0]}">Wyswietl plan</a>`);
             document.getElementById(budynekInfo[0]).addEventListener("click", function(){pokaz_plan(budynekInfo[0])});
         };
 
-        //PLAN
-        function pokaz_plan(budynek_nazwa){
-            nazwa_budynku = document.getElementById('nazwa_budynku');
-            nazwa_budynku.innerHTML = "<h2>" + budynek_nazwa.toUpperCase() + "<h2>";
-            nazwa_budynku.style.cssText = `
-                float:left;
-                margin-left: 300px;
-            `
-            var pietra = document.getElementById('pietra');
-            for(var i = 0; i<4; i++)
-            {
-                var przycisk = document.createElement("button");
-                if (i==3)
-                {
-                    przycisk.innerHTML = "Pietro -1";
-                }
-                else
-                {
-                    var a =  "Pietro " + i
-                    przycisk.innerHTML = a;    
-                }
-                var b = "p" + i;
-                przycisk.id = b;
-                przycisk.className = "przyciski_pietra";
-                // if(i!=0)
-                // {
-                // przycisk.style.cssText = "border-style:solid";
-                // }
-                // else{
-                //     przycisk.style.cssText = "border-style:inset";
-                // }
-                pietra.appendChild(przycisk);
-            }
-            
-            // var children = pietra.children;
-            var children = document.getElementsByClassName("przyciski_pietra");
-            for (var j = 0;j<children.length;j++)
-            {
-                // console.log(children[j].innerHTML)
-                children[j].addEventListener("click", function() {
-                    for (var k = 0;k<children.length;k++)
-                    {
-                        children[k].style.cssText = "background-color: #006AFF";
-                    }      
-                    this.style.cssText = "background-color: #1C4A8B";
-                    var a = budynek_nazwa +"-" + this.id.substr(this.id.length -1);
-                    document.getElementById("canvas1").style.cssText = `
-                    width: 992px;
-                    height: 317px;
-                    background-image: url(plany/${budynek_nazwa}/${a}.svg);
-                    background-size: cover;
-                `   
-                })
-                
-
-            }
-            document.getElementById("canvas1").style.cssText = `
-                width: 992px;
-                height: 317px;
-                background-image: url(plany/${budynek_nazwa}/${budynek_nazwa}-0.svg);
-                background-size: cover;
-            `
-        }
-
-        console.log(window.location.pathname);
-        //!PLAN
+        
         function zajecia(nazwa){
             let today = new Date();
             let todayDay = today.toISOString().slice(0, 10);

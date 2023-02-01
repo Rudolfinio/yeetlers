@@ -99,6 +99,7 @@ class pomieszczenie
 
         return $pomieszczenie;
     }
+
     public static function findpom($nr_pomieszczenia): ?pomieszczenie
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));

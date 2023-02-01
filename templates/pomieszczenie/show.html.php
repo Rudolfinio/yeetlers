@@ -1,7 +1,9 @@
 <?php
 
 /** @var \App\Model\pomieszczenie $pomieszczenie */
+/** @var \App\Model\Pietro $pietro */
 /** @var \App\Service\Router $router */
+use \App\Model\Pietro;
 
 $title = "{$pomieszczenie->getNumer()} ({$pomieszczenie->getPomieszczenie_id()})";
 $bodyClass = 'show';
@@ -9,9 +11,9 @@ $bodyClass = 'show';
 ob_start(); 
 session_start();
 ?>
-    <h1><?= $pomieszczenie->getNumer() ?></h1>
+    <h1><?= $pomieszczenie->getNumer()." ".Pietro::find($pomieszczenie->getPietro_id())->getNazwa() ?></h1>
     <article>
-        <?= $pomieszczenie->getPietro_id();?>
+        <?= Pietro::find($pomieszczenie->getPietro_id())->getNazwa()?>
     </article>
 
     <ul class="action-list">

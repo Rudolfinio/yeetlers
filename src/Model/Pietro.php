@@ -113,28 +113,12 @@ class Pietro
         return $pietro;
     }
 
-    public static function findName($nazwa): ?Pietro
+    public static function findName($pietro_name): ?Pietro
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
-        $sql = 'SELECT * FROM pietro WHERE nazwa = :nazwa';
+        $sql = 'SELECT * FROM pietro WHERE nazwa = :pietro_name';
         $statement = $pdo->prepare($sql);
-        $statement->execute(['nazwa' => $nazwa]);
-
-        $pietroArray = $statement->fetch(\PDO::FETCH_ASSOC);
-        if (! $pietroArray) {
-            return null;
-        }
-        $pietro = Pietro::fromArray($pietroArray);
-
-        return $pietro;
-    }
-
-    public static function findByPomieszczenie($nazwa): ?Pietro
-    {
-        $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));
-        $sql = 'SELECT * FROM pietro WHERE nazwa = :nazwa';
-        $statement = $pdo->prepare($sql);
-        $statement->execute(['nazwa' => $nazwa]);
+        $statement->execute(['nazwa' => $pietro_name]);
 
         $pietroArray = $statement->fetch(\PDO::FETCH_ASSOC);
         if (! $pietroArray) {

@@ -137,6 +137,74 @@ ob_start(); ?>
             let zajeciaInfo = [];
             //`https://plan.zut.edu.pl/schedule_student.php?teacher=${nazwa}&start=${today}`
             let data = await fetch(`https://cors-anywhere.herokuapp.com/https://plan.zut.edu.pl/schedule_student.php?teacher=${nazwa}&start=${todayDay}T${todayTime}`)
+<<<<<<< HEAD
+=======
+                .then((response) => {
+                    console.log(response);
+                    //--> [object Response]
+                    console.log(response.body);
+                    //--> [object ReadableStream]
+
+                    return response.json();
+                })
+                .then((data) => {
+                    
+                    //console.log(data);
+                    //sprawdzanie czy jest odpowiednia godzina, ale to zależy czy plan.zut updateuje jako 1 pozycję najbliższe / trwające zajęcia
+                    for(let i = 1; i < data.length; i++){
+                        if(data[i].start.split('T')[0] == todayDay){
+                            if((data[i].start.split('T')[1].slice(0,2) <= todayTime && data[i].end.split('T')[1].slice(0,2) >= todayTime) || data[i].start.split('T')[1].slice(0,2) >= todayTime){
+                                zajeciaInfo.push(data[i].start.split('T')[0]);
+                                zajeciaInfo.push(data[i].start.split('T')[1].slice(0,5));
+                                zajeciaInfo.push(data[i].end.split('T')[1].slice(0,5));
+                                zajeciaInfo.push(data[i].title);
+                                zajeciaInfo.push(data[i].worker_title);
+                                if(data[i].room !== null){
+                                    zajeciaInfo.push(data[i].room);
+                                }
+                                return zajeciaInfo;
+                            }
+                        }
+                    }
+                    if(zajeciaInfo.length == 0){
+                        for(let i = 1; i < data.length; i++){
+                            if(data[i].start.split('T')[0] >= todayDay){
+                                zajeciaInfo.push(data[i].start.split('T')[0]);
+                                zajeciaInfo.push(data[i].start.split('T')[1].slice(0,5));
+                                zajeciaInfo.push(data[i].end.split('T')[1].slice(0,5));
+                                zajeciaInfo.push(data[i].title);
+                                zajeciaInfo.push(data[i].worker_title);
+                                if(data[i].room !== null){
+                                    zajeciaInfo.push(data[i].room);
+                                }
+                                return zajeciaInfo;
+                                break;
+                            }
+                    }
+                    }
+                    // zajeciaInfo.push(data[1].start.split('T')[0]);
+                    // zajeciaInfo.push(data[1].start.split('T')[1].slice(0,5));
+                    // zajeciaInfo.push(data[1].end.split('T')[1].slice(0,5));
+                    // zajeciaInfo.push(data[1].title);
+                    // zajeciaInfo.push(data[1].worker_title);
+                    // if(data[1].room !== null){
+                    //     zajeciaInfo.push(data[1].room);
+                    // }
+                    
+                })
+                return data;
+        }
+        // //żeby to działało trzeba jakoś ogarnąć returnowanie 
+        (async () => {console.log(await zajecia('Sychel Dariusz'))})();
+
+        async function zajecia2(nazwa){
+            let today = new Date();
+            let todayDay = today.toISOString().slice(0, 10);
+            let todayTime = today.getHours();
+            let zajeciaInfo = [];
+            //`https://plan.zut.edu.pl/schedule_student.php?teacher=${nazwa}&start=${today}`
+            let data = await fetch(`https://cors-anywhere.herokuapp.com/https://plan.zut.edu.pl/schedule_student.php?room=${nazwa}&start=${todayDay}T${todayTime}`)
+>>>>>>> 90b121171c2d086ccc6966ccbe003e2fc6f45533
                 .then((response) => {
                     console.log(response);
                     //--> [object Response]
@@ -160,7 +228,10 @@ ob_start(); ?>
                                 if(data[i].room !== null){
                                     zajeciaInfo.push(data[i].room);
                                 }
+<<<<<<< HEAD
                                 // console.log(zajeciaInfo);
+=======
+>>>>>>> 90b121171c2d086ccc6966ccbe003e2fc6f45533
                                 return zajeciaInfo;
                             }
                             
@@ -177,7 +248,10 @@ ob_start(); ?>
                                 if(data[i].room !== null){
                                     zajeciaInfo.push(data[i].room);
                                 }
+<<<<<<< HEAD
                                 // console.log(zajeciaInfo);
+=======
+>>>>>>> 90b121171c2d086ccc6966ccbe003e2fc6f45533
                                 return zajeciaInfo;
                                 break;
                             }
@@ -194,6 +268,7 @@ ob_start(); ?>
                     
                 })
                 return data;
+<<<<<<< HEAD
                 
             
         }
@@ -266,6 +341,11 @@ ob_start(); ?>
         //żeby to działało trzeba jakoś ogarnąć returnowanie 
         //zajecia('Sychel Dariusz');
 
+=======
+        }
+        // //żeby to działało trzeba jakoś ogarnąć returnowanie 
+        (async () => {console.log(await zajecia2('wi wi1- 208'))})();
+>>>>>>> 90b121171c2d086ccc6966ccbe003e2fc6f45533
     </script>
     
 <?php

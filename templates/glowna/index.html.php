@@ -147,7 +147,7 @@ ob_start(); ?>
                 })
                 .then((data) => {
                     
-                    console.log(data);
+                    // console.log(data);
                     //sprawdzanie czy jest odpowiednia godzina, ale to zależy czy plan.zut updateuje jako 1 pozycję najbliższe / trwające zajęcia
                     for(let i = 1; i < data.length; i++){
                         if(data[i].start.split('T')[0] == todayDay){
@@ -160,7 +160,7 @@ ob_start(); ?>
                                 if(data[i].room !== null){
                                     zajeciaInfo.push(data[i].room);
                                 }
-                                console.log(zajeciaInfo);
+                                // console.log(zajeciaInfo);
                                 return zajeciaInfo;
                             }
                             
@@ -177,7 +177,7 @@ ob_start(); ?>
                                 if(data[i].room !== null){
                                     zajeciaInfo.push(data[i].room);
                                 }
-                                console.log(zajeciaInfo);
+                                // console.log(zajeciaInfo);
                                 return zajeciaInfo;
                                 break;
                             }

@@ -408,17 +408,17 @@ use App\Model\pracownik_pomieszczenie;
                 }
                 else
                 {
-                    console.log(out);
-                // var out = "Dzien: " + tab[0] + "<br />";
-                // out += "Godzina rozpoczecia: " + tab[1] + "<br />";
-                // out += "Godzina zakonczenia: " + tab[2] + "<br />";
-                // out += "Przedmiot: " + tab[3] + "<br />";
-                // out += "Prowadzacy: " + tab[4] + "<br />";
+                var out = "Gabinet: " + budynek_nazwa.toUpperCase() +"-" + pom_numer + "<br />";
+                out += "Dzien: " + tab[0] + "<br />";
+                out += "Godzina rozpoczecia: " + tab[1] + "<br />";
+                out += "Godzina zakonczenia: " + tab[2] + "<br />";
+                out += "Przedmiot: " + tab[3] + "<br />";
+                out += "Sala: " + tab[5] + "<br />";
                 }
                 var info = document.createElement("p");
-                // info.innerHTML=out;
+                info.innerHTML=out;
                 document.getElementById("info").appendChild(nazwa_pracownika);
-                // document.getElementById("info").appendChild(info);
+                document.getElementById("info").appendChild(info);
 
             })();
 
@@ -446,7 +446,7 @@ use App\Model\pracownik_pomieszczenie;
                         $pietro = Pietro::find($pracownia->getPietro_id());
                         if($pietro!=null){
                             $budynek = \App\Model\budynek::find($pietro->getBudynekId());
-                            echo $budynek->getNazwa()," ",$pracownia->getNumer()," ";
+                            // echo $budynek->getNazwa()," ",$pracownia->getNumer()," ";
                             echo "<script type='text/javascript'>pokaz_plan('{$budynek->getNazwa()}','{$pracownia->getNumer()}','{$prac_nazwa}');</script>";
                         }
 

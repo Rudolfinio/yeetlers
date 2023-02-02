@@ -19,7 +19,7 @@ session_start();
 
             <li><a href="<?= $router->generatePath('pomieszczenie-index');?>">Pomieszczenia</a></li>
 
-            <li><a>Pracownicy-Pomieszczenia</a></li>
+            <li><a href="<?= $router->generatePath('pracownik_pomieszczenie-index');?>">Pracownicy-Pomieszczenia</a></li>
 
             <li><a href="<?= $router->generatePath('Pietro-index');?>">Piętra</a></li>
         </ul>

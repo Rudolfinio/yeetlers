@@ -115,7 +115,11 @@ class pomieszczenie
 
         return $pomieszczenie;
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 90b121171c2d086ccc6966ccbe003e2fc6f45533
     public static function findPomPietro($nr_pomieszczenia, $pietro_id): ?pomieszczenie
     {
         $pdo = new \PDO(Config::get('db_dsn'), Config::get('db_user'), Config::get('db_pass'));

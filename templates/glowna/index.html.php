@@ -34,6 +34,8 @@ ob_start(); ?>
 
     } */
 
+    
+
     </style>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
@@ -64,6 +66,8 @@ ob_start(); ?>
         <rect id="120" x="25.2%" y="18%" width="3.1%" height="21.1%"/> -->
       </g>    
     </svg>
+
+    <div id="info"></div>
     <!--  -->
 
     <script type="text/javascript">
@@ -126,13 +130,13 @@ ob_start(); ?>
         };
 
         
-        function zajecia(nazwa){
+        async function zajecia(nazwa){
             let today = new Date();
             let todayDay = today.toISOString().slice(0, 10);
             let todayTime = today.getHours();
             let zajeciaInfo = [];
             //`https://plan.zut.edu.pl/schedule_student.php?teacher=${nazwa}&start=${today}`
-            fetch(`https://cors-anywhere.herokuapp.com/https://plan.zut.edu.pl/schedule_student.php?teacher=${nazwa}&start=${todayDay}T${todayTime}`)
+            let data = await fetch(`https://cors-anywhere.herokuapp.com/https://plan.zut.edu.pl/schedule_student.php?teacher=${nazwa}&start=${todayDay}T${todayTime}`)
                 .then((response) => {
                     console.log(response);
                     //--> [object Response]
@@ -156,7 +160,10 @@ ob_start(); ?>
                                 if(data[i].room !== null){
                                     zajeciaInfo.push(data[i].room);
                                 }
+                                console.log(zajeciaInfo);
+                                return zajeciaInfo;
                             }
+                            
                         }
                     }
                     if(zajeciaInfo.length == 0){
@@ -170,6 +177,8 @@ ob_start(); ?>
                                 if(data[i].room !== null){
                                     zajeciaInfo.push(data[i].room);
                                 }
+                                console.log(zajeciaInfo);
+                                return zajeciaInfo;
                                 break;
                             }
                     }
@@ -184,14 +193,78 @@ ob_start(); ?>
                     // }
                     
                 })
-                .then((zajeciaInfo) => {
-                    return zajeciaInfo
-                });
+                return data;
                 
             
         }
+
+        async function zajecia2(nazwa){
+            let today = new Date();
+            let todayDay = today.toISOString().slice(0, 10);
+            let todayTime = today.getHours();
+            let zajeciaInfo = [];
+            //`https://plan.zut.edu.pl/schedule_student.php?teacher=${nazwa}&start=${today}`
+            let data = await fetch(`https://cors-anywhere.herokuapp.com/https://plan.zut.edu.pl/schedule_student.php?room=${nazwa}&start=${todayDay}T${todayTime}`)
+                .then((response) => {
+                    console.log(response);
+                    //--> [object Response]
+                    console.log(response.body);
+                    //--> [object ReadableStream]
+
+                    return response.json();
+                })
+                .then((data) => {
+                    
+                    //console.log(data);
+                    //sprawdzanie czy jest odpowiednia godzina, ale to zależy czy plan.zut updateuje jako 1 pozycję najbliższe / trwające zajęcia
+                    for(let i = 1; i < data.length; i++){
+                        if(data[i].start.split('T')[0] == todayDay){
+                            if((data[i].start.split('T')[1].slice(0,2) <= todayTime && data[i].end.split('T')[1].slice(0,2) >= todayTime) || data[i].start.split('T')[1].slice(0,2) >= todayTime){
+                                zajeciaInfo.push(data[i].start.split('T')[0]);
+                                zajeciaInfo.push(data[i].start.split('T')[1].slice(0,5));
+                                zajeciaInfo.push(data[i].end.split('T')[1].slice(0,5));
+                                zajeciaInfo.push(data[i].title);
+                                zajeciaInfo.push(data[i].worker_title);
+                                if(data[i].room !== null){
+                                    zajeciaInfo.push(data[i].room);
+                                }
+                                return zajeciaInfo;
+                            }
+                            
+                        }
+                    }
+                    if(zajeciaInfo.length == 0){
+                        for(let i = 1; i < data.length; i++){
+                            if(data[i].start.split('T')[0] >= todayDay){
+                                zajeciaInfo.push(data[i].start.split('T')[0]);
+                                zajeciaInfo.push(data[i].start.split('T')[1].slice(0,5));
+                                zajeciaInfo.push(data[i].end.split('T')[1].slice(0,5));
+                                zajeciaInfo.push(data[i].title);
+                                zajeciaInfo.push(data[i].worker_title);
+                                if(data[i].room !== null){
+                                    zajeciaInfo.push(data[i].room);
+                                }
+                                return zajeciaInfo;
+                                break;
+                            }
+                    }
+                    }
+                    // zajeciaInfo.push(data[1].start.split('T')[0]);
+                    // zajeciaInfo.push(data[1].start.split('T')[1].slice(0,5));
+                    // zajeciaInfo.push(data[1].end.split('T')[1].slice(0,5));
+                    // zajeciaInfo.push(data[1].title);
+                    // zajeciaInfo.push(data[1].worker_title);
+                    // if(data[1].room !== null){
+                    //     zajeciaInfo.push(data[1].room);
+                    // }
+                    
+                })
+                return data;
+        }
+        // //żeby to działało trzeba jakoś ogarnąć returnowanie 
+        //(async () => {console.log(await zajecia2('WI WI2- 120'))})();
         //żeby to działało trzeba jakoś ogarnąć returnowanie 
-        zajecia('Sychel Dariusz');
+        //zajecia('Sychel Dariusz');
 
     </script>
     

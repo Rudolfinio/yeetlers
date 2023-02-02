@@ -120,6 +120,32 @@ switch ($action) {
         $controller = new \App\Controller\PietroController();
         $view = $controller->deleteAction($_REQUEST['id'], $router);
         break;
+    case 'pracownik_pomieszczenie-index':
+        $controller = new \App\Controller\pracownik_pomieszczenieController();
+        $view = $controller->indexAction($templating, $router);
+        break;
+    case 'pracownik_pomieszczenie-create':
+        $controller = new \App\Controller\pracownik_pomieszczenieController();
+        $view = $controller->createActionAll($_REQUEST['pracownik'] ?? null, $_REQUEST['Pietro'] ?? null, $_REQUEST['pomieszczenie'] ?? null, $templating, $router);
+        break;
+    case 'pracownik_pomieszczenie-edit':
+        if (! $_REQUEST['id']) {
+            break;
+        }
+        $controller = new \App\Controller\pracownik_pomieszczenieController();
+        $view = $controller->editAction($_REQUEST['id'], $_REQUEST['pracownik_pomieszczenie'] ?? null, $templating, $router);
+        break;
+    case 'pracownik_pomieszczenie-show':
+        if (! $_REQUEST['id']) {
+            break;
+        }
+        $controller = new \App\Controller\pracownik_pomieszczenieController();
+        $view = $controller->showAction($_REQUEST['id'], $templating, $router);
+        break;
+    case 'pracownik_pomieszczenie-delete':
+        if (! $_REQUEST['id']) {
+            break;
+        }
     default:
         $myfile = fopen("output.txt", "w") or die("Unable to open file!");
         fwrite($myfile, 'nie dziala');

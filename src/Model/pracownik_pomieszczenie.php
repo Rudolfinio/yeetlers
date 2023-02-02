@@ -9,40 +9,61 @@ class pracownik_pomieszczenie
     private ?int $pracownik_id = null;
     private ?int $pomieszczenie_id = null;
 
-    public function getPracownik_pomieszczenie_id(): ?int
+    /**
+     * Get the value of pracownik_pomieszczenie_id
+     */ 
+    public function getPracownik_pomieszczenie_id() : ?int
     {
         return $this->pracownik_pomieszczenie_id;
     }
 
-    public function setPracownik_pomieszczenie_id(?int $pracownik_pomieszczenie_id): pracownik_pomieszczenie
+    /**
+     * Set the value of pracownik_pomieszczenie_id
+     *
+     * @return  self
+     */ 
+    public function setPracownik_pomieszczenie_id($pracownik_pomieszczenie_id) : void
     {
         $this->pracownik_pomieszczenie_id = $pracownik_pomieszczenie_id;
-
-        return $this;
+        
     }
 
-    public function getPracownik_id(): ?int
+    /**
+     * Get the value of pracownik_id
+     */ 
+    public function getPracownik_id() : ?int
     {
         return $this->pracownik_id;
     }
 
-    public function setPracownik_id(?int $pracownik_id): pracownik_pomieszczenie
+    /**
+     * Set the value of pracownik_id
+     *
+     * @return  self
+     */ 
+    public function setPracownik_id($pracownik_id) : void
     {
         $this->pracownik_id = $pracownik_id;
 
-        return $this;
     }
 
-    public function getPomieszczenie_id(): ?int
+    /**
+     * Get the value of pomieszczenie_id
+     */ 
+    public function getPomieszczenie_id() : ?int
     {
         return $this->pomieszczenie_id;
     }
 
-    public function setPomieszczenie_id(?int $pomieszczenie_id): pracownik_pomieszczenie
+    /**
+     * Set the value of pomieszczenie_id
+     *
+     * @return  self
+     */ 
+    public function setPomieszczenie_id($pomieszczenie_id) : void
     {
         $this->pomieszczenie_id = $pomieszczenie_id;
 
-        return $this;
     }
 
     public static function fromArray($array): pracownik_pomieszczenie
@@ -152,4 +173,6 @@ class pracownik_pomieszczenie
         $this->setPracownik_id(null);
         $this->setPomieszczenie_id(null);
     }
+
+
 }

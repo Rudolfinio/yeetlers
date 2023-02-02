@@ -39,6 +39,8 @@ use App\Model\pracownik_pomieszczenie;
         fill:#56EB8D;
         fill-opacity: 25%;
     }
+
+
     </style>
 
 
@@ -48,7 +50,7 @@ use App\Model\pracownik_pomieszczenie;
 
 <script>
     //PLAN wi1-212
-    function pokaz_plan(budynek_nazwa, pom_numer = "0"){
+    function pokaz_plan(budynek_nazwa, pom_numer = "0", pracownik=null){
             // var p2 = `        <rect id="wi1-212" x="18.6%" y="55.7%" width="3.6%" height="16%"/>
             //             <rect id="wi1-207" x="42%" y="50.5%" width="3.6%" height="21.1%"/>
             //             `
@@ -137,7 +139,7 @@ use App\Model\pracownik_pomieszczenie;
             {
                 // console.log(children[j].innerHTML)
                 children[j].addEventListener("click", function() {
-
+                    document.getElementById("info").innerHTML="";
                     for (var k = 0;k<children.length;k++)
                     {
                         children[k].style.cssText = "background-color: #006AFF";
@@ -159,6 +161,13 @@ use App\Model\pracownik_pomieszczenie;
                     for(const value of Object.values(plan[budynek_nazwa]["p"+nr_pietra]))
                     {
                         pomieszczenia.innerHTML += value;
+                    }
+
+                    var grupa = document.getElementById('shapes');
+                    var elements = grupa.children;
+                    for (var i = 0;i<elements.length;i++)
+                    {
+                        elements[i].addEventListener("click", pomieszczenie_info);
                     }
 
 
@@ -198,6 +207,15 @@ use App\Model\pracownik_pomieszczenie;
                 `
                 document.getElementById("shapes").style.cssText = "        fill: #56EB8D; fill-opacity: 0%;"
                 document.getElementById("b0").style.cssText = "background-color: #1C4A8B"
+                
+                //info
+                var grupa = document.getElementById('shapes');
+                var elements = grupa.children;
+                for (var i = 0;i<elements.length;i++)
+                {
+                    elements[i].addEventListener("click", pomieszczenie_info);
+                }
+
             }
             else
             {   
@@ -212,6 +230,21 @@ use App\Model\pracownik_pomieszczenie;
                 `
                     pomieszczenia.innerHTML = plan[budynek_nazwa]["p0"][pom_numer];
                     document.getElementById("b0").style.cssText = "background-color: #1C4A8B"
+
+                    var grupa = document.getElementById('shapes');
+                    var elements = grupa.children;
+                    for (var i = 0;i<elements.length;i++)
+                    {
+                        elements[i].addEventListener("click", pomieszczenie_info);
+                    }
+                    if(pracownik==null)
+                    {
+                    pomieszczenie_info_szukaj(budynek_nazwa, pom_numer);
+                    }
+                    else
+                    {
+                        pracownik_info(budynek_nazwa, pom_numer, pracownik);
+                    }
                 }
                 else if(pom_numer.charAt(0)=="0")
                 {
@@ -223,6 +256,21 @@ use App\Model\pracownik_pomieszczenie;
                 `
                     pomieszczenia.innerHTML = plan[budynek_nazwa]["p3"][pom_numer];
                     document.getElementById("b3").style.cssText = "background-color: #1C4A8B"
+
+                    var grupa = document.getElementById('shapes');
+                    var elements = grupa.children;
+                    for (var i = 0;i<elements.length;i++)
+                    {
+                        elements[i].addEventListener("click", pomieszczenie_info);
+                    }
+                    if(pracownik==null)
+                    {
+                    pomieszczenie_info_szukaj(budynek_nazwa, pom_numer);
+                    }
+                    else
+                    {
+                        pracownik_info(budynek_nazwa, pom_numer, pracownik);
+                    }
                 }
                 else
                 {
@@ -235,6 +283,21 @@ use App\Model\pracownik_pomieszczenie;
                     pomieszczenia.innerHTML = plan[budynek_nazwa]["p"+pom_numer.charAt(0)][pom_numer];
                     document.getElementById("b"+pom_numer.charAt(0)).style.cssText = "background-color: #1C4A8B"
 
+                    var grupa = document.getElementById('shapes');
+                    var elements = grupa.children;
+                    for (var i = 0;i<elements.length;i++)
+                    {
+                        elements[i].addEventListener("click", pomieszczenie_info);
+                    }
+                    if(pracownik==null)
+                    {
+                    pomieszczenie_info_szukaj(budynek_nazwa, pom_numer);
+                    }
+                    else
+                    {
+                        pracownik_info(budynek_nazwa, pom_numer, pracownik);
+                    }
+
                 }
                 document.getElementById("shapes").style.cssText = "        fill: #56EB8D; fill-opacity: 25%;"
             }
@@ -244,7 +307,122 @@ use App\Model\pracownik_pomieszczenie;
             // console.log(nr_pietra);
         }
 
-        console.log(window.location.pathname);
+        function pomieszczenie_info_szukaj(budynek_nazwa, pom_numer){
+            pomieszczenie_nazwa = budynek_nazwa + "-" + pom_numer;
+            document.getElementById("info").innerHTML="";
+            var podswietlone_pokoje = document.getElementById("shapes").children;
+            for (var i = 0;i<podswietlone_pokoje.length;i++)
+                    {
+                        document.getElementById(podswietlone_pokoje[i].id).style.cssText = ""
+                    }
+            document.getElementById(pomieszczenie_nazwa).style.cssText = "        fill: #56EB8D; fill-opacity: 25%;"
+            // console.log('dziala' , this.id);
+            var nazwa_pokoju = document.createElement("h3");
+            var pokoj = pomieszczenie_nazwa.substr(0,2) + " " + pomieszczenie_nazwa.substr(0,4) + " " + pomieszczenie_nazwa.substr(4);
+            console.log(pokoj);
+            var tab = null;
+            nazwa_pokoju.innerHTML = pomieszczenie_nazwa;
+            // (async () => {info.innerHTML = await zajecia2(pokoj)})();
+            (async () => {tab = await zajecia2(pokoj);
+                if(tab===undefined)
+                {
+                    var out = "Brak informacji o pomieszczeniu"
+                }
+                else
+                {
+                var out = "Dzien: " + tab[0] + "<br />";
+                out += "Godzina rozpoczecia: " + tab[1] + "<br />";
+                out += "Godzina zakonczenia: " + tab[2] + "<br />";
+                out += "Przedmiot: " + tab[3] + "<br />";
+                out += "Prowadzacy: " + tab[4] + "<br />";
+                }
+                var info = document.createElement("p");
+                info.innerHTML=out;
+                document.getElementById("info").appendChild(nazwa_pokoju);
+                document.getElementById("info").appendChild(info);
+
+            })();
+
+        }
+
+        function pomieszczenie_info(){
+            pomieszczenie_nazwa = this.id;
+
+            document.getElementById("info").innerHTML="";
+            var podswietlone_pokoje = document.getElementById("shapes").children;
+            for (var i = 0;i<podswietlone_pokoje.length;i++)
+                    {
+                        document.getElementById(podswietlone_pokoje[i].id).style.cssText = ""
+                    }
+            document.getElementById(pomieszczenie_nazwa).style.cssText = "        fill: #56EB8D; fill-opacity: 25%;"
+            // console.log('dziala' , this.id);
+            var nazwa_pokoju = document.createElement("h3");
+            var pokoj = pomieszczenie_nazwa.substr(0,2) + " " + pomieszczenie_nazwa.substr(0,4) + " " + pomieszczenie_nazwa.substr(4);
+            console.log(pokoj);
+            var tab = null;
+            nazwa_pokoju.innerHTML = pomieszczenie_nazwa;
+            // (async () => {info.innerHTML = await zajecia2(pokoj)})();
+            (async () => {tab = await zajecia2(pokoj);
+                if(tab===undefined)
+                {
+                    var out = "Brak informacji o pomieszczeniu"
+                }
+                else
+                {
+                var out = "Dzien: " + tab[0] + "<br />";
+                out += "Godzina rozpoczecia: " + tab[1] + "<br />";
+                out += "Godzina zakonczenia: " + tab[2] + "<br />";
+                out += "Przedmiot: " + tab[3] + "<br />";
+                out += "Prowadzacy: " + tab[4] + "<br />";
+                }
+                var info = document.createElement("p");
+                info.innerHTML=out;
+                document.getElementById("info").appendChild(nazwa_pokoju);
+                document.getElementById("info").appendChild(info);
+
+            })();
+
+        }
+
+        function pracownik_info(budynek_nazwa, pom_numer, pracownik){
+            pomieszczenie_nazwa = budynek_nazwa + "-" + pom_numer;
+
+            document.getElementById("info").innerHTML="";
+            // var podswietlone_pokoje = document.getElementById("shapes").children;
+            // for (var i = 0;i<podswietlone_pokoje.length;i++)
+            //         {
+            //             document.getElementById(podswietlone_pokoje[i].id).style.cssText = ""
+            //         }
+            document.getElementById(pomieszczenie_nazwa).style.cssText = "        fill: #56EB8D; fill-opacity: 25%;"
+            // console.log('dziala' , this.id);
+            var nazwa_pracownika = document.createElement("h3");
+            // var pokoj = pomieszczenie_nazwa.substr(0,2) + " " + pomieszczenie_nazwa.substr(0,4) + " " + pomieszczenie_nazwa.substr(4);
+            // console.log(pokoj);
+            var tab = null;
+            nazwa_pracownika.innerHTML = pracownik;
+            // (async () => {info.innerHTML = await zajecia2(pokoj)})();
+            (async () => {tab = await zajecia(pracownik);
+                if(tab===undefined)
+                {
+                    var out = "Brak informacji o pracowniku"
+                }
+                else
+                {
+                var out = "Gabinet: " + budynek_nazwa.toUpperCase() +"-" + pom_numer + "<br />";
+                out += "Dzien: " + tab[0] + "<br />";
+                out += "Godzina rozpoczecia: " + tab[1] + "<br />";
+                out += "Godzina zakonczenia: " + tab[2] + "<br />";
+                out += "Przedmiot: " + tab[3] + "<br />";
+                out += "Sala: " + tab[5] + "<br />";
+                }
+                var info = document.createElement("p");
+                info.innerHTML=out;
+                document.getElementById("info").appendChild(nazwa_pracownika);
+                document.getElementById("info").appendChild(info);
+
+            })();
+
+        }
         //!PLAN
 </script>
 
@@ -261,14 +439,15 @@ use App\Model\pracownik_pomieszczenie;
                 $msg[0] = ucfirst($msg[0]);
                 $msg[1] = ucfirst($msg[1]);;
                 $prac = pracownik::findname($msg[0], $msg[1]);
+                $prac_nazwa = $msg[1] . " " . $msg[0];
                 if($prac != null) {
                     $pracownia = pomieszczenie::find($prac->getGabinet());
                     if($pracownia!=null){
                         $pietro = Pietro::find($pracownia->getPietro_id());
                         if($pietro!=null){
                             $budynek = \App\Model\budynek::find($pietro->getBudynekId());
-                            echo $budynek->getNazwa()," ",$pracownia->getNumer()," ";
-                            echo "<script type='text/javascript'>pokaz_plan('{$budynek->getNazwa()}','{$pracownia->getNumer()}');</script>";
+                            // echo $budynek->getNazwa()," ",$pracownia->getNumer()," ";
+                            echo "<script type='text/javascript'>pokaz_plan('{$budynek->getNazwa()}','{$pracownia->getNumer()}','{$prac_nazwa}');</script>";
                         }
 
                     }else{echo "brak gabinetu";}
